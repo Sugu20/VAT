@@ -1,0 +1,11 @@
+# Android/IntelliJ
+.idea/
+*.iml
+build/
+local.properties
+.gradle/
+.keystore
+
+# User-specific configurations
+.DS_Store
+.gradle
