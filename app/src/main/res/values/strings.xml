@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">VAT APP</string>
+    <string name="virtual_text">VIRTUAL</string>
+    <string name="ad_text">AD</string>
+    <string name="tryout_text">TRYOUT</string>
+    <string name="vat_text">VAT</string>
+    <string name="image_description">Description of the image</string>
+    <string name="designnew_text">Upload New Design.</string>
+    <string name="import_botton">IMPORT</string>
+    <string name="file_btn">Files</string>
+    <string name="Import_view">Import from</string>
+    <string name="gallery_view">Gallery</string>
 </resources>
