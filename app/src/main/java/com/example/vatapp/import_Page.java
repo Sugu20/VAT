@@ -17,7 +17,7 @@ public class import_Page extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_import_page);
 
         Button btnImport = findViewById(R.id.button_import);
 

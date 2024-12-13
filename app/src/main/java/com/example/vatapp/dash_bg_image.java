@@ -8,7 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class dash_bgimage extends AppCompatActivity {
+public class dash_bg_image extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

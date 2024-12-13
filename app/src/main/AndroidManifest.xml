@@ -13,34 +13,22 @@
         android:theme="@style/Theme.VATAPP"
         tools:targetApi="31">
         <activity
-            android:name=".import_page"
-            android:exported="false" />
-        <activity
-            android:name=".import_page"
-            android:exported="false" />
-        <activity
-            android:name=".profile_page"
-            android:exported="false" />
-        <activity
-            android:name=".upload_page"
+            android:name=".import_Page"
             android:exported="false" />
         <activity
             android:name=".dash_user"
             android:exported="false" />
         <activity
-            android:name=".dash_bgimage"
+            android:name=".dash_bg_image"
             android:exported="false" />
         <activity
-            android:name=".dashboard_designer"
+            android:name=".dash_designer"
             android:exported="false" />
         <activity
-            android:name=".Exist_designers_dash"
+            android:name=".designers_dash"
             android:exported="false" />
         <activity
             android:name=".signup2"
-            android:exported="false" />
-        <activity
-            android:name=".edit_Text_Bg_2"
             android:exported="false" />
         <activity
             android:name=".signup"

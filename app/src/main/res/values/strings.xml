@@ -10,4 +10,11 @@
     <string name="file_btn">Files</string>
     <string name="Import_view">Import from</string>
     <string name="gallery_view">Gallery</string>
+    <string name="signup_text">Sign Up</string>
+    <string name="continue_button">Continue</string>
+    <string name="as_text">as</string>
+    <string name="Youremail_text">Your Email</string>
+    <string name="send_mail">Send Mail</string>
+    <string name="forgot_text">Forgot</string>
+    <string name="password_text">Password?</string>
 </resources>
