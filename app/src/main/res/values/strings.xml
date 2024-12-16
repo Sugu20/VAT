@@ -18,4 +18,8 @@
     <string name="forgot_text">Forgot</string>
     <string name="password_text">Password?</string>
     <string name="designers_previous">Designers Previous Uploads.</string>
+    <string name="new_text">New Designs.</string>
+    <string name="designers_list_text">Designers List.</string>
+    <string name="profile_page">Profile.</string>
+    <string name="favourite_design">Favourite Designs.</string>
 </resources>

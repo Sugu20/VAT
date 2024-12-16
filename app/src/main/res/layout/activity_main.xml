@@ -73,12 +73,12 @@
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="206dp"
-        android:layout_height="133dp"
-        android:layout_marginTop="360dp"
+        android:layout_width="184dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="368dp"
+        android:contentDescription="@string/vat_text"
         android:fontFamily="@font/inter_extrabold"
         android:text="@string/vat_text"
-        android:contentDescription="@string/vat_text"
         android:textColor="#BBCFEF"
         android:textSize="100sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -25,10 +25,11 @@
         android:layout_width="380dp"
         android:layout_height="191dp"
         android:layout_marginTop="24dp"
+        android:padding="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/edit_text_bg" />
+        android:background ="@drawable/edit_text_bg" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -36,7 +37,7 @@
         android:layout_height="161dp"
         android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/edit_text_bg"
+        android:background="@drawable/edit_text_bg"
         tools:layout_editor_absoluteY="430dp" />
 
     <ImageButton
@@ -47,7 +48,7 @@
         android:layout_marginTop="232dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/edit_text_bg" />
+        android:background="@drawable/edit_text_bg" />
 
     <ImageButton
         android:id="@+id/imageButton5"
@@ -57,7 +58,7 @@
         android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/edit_text_bg" />
+        android:background ="@drawable/edit_text_bg" />
 
     <TextView
         android:id="@+id/textView22"
