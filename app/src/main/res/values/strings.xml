@@ -13,8 +13,9 @@
     <string name="signup_text">Sign Up</string>
     <string name="continue_button">Continue</string>
     <string name="as_text">as</string>
-    <string name="Youremail_text">Your Email</string>
+    <string name="Your_email_text">Your Email</string>
     <string name="send_mail">Send Mail</string>
     <string name="forgot_text">Forgot</string>
     <string name="password_text">Password?</string>
+    <string name="designers_previous">Designers Previous Uploads.</string>
 </resources>
