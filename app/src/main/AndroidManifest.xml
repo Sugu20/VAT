@@ -13,6 +13,24 @@
         android:theme="@style/Theme.VATAPP"
         tools:targetApi="31">
         <activity
+            android:name=".forgot_password_1"
+            android:exported="false" />
+        <activity
+            android:name=".designers_list_1"
+            android:exported="false" />
+        <activity
+            android:name=".new_design_1"
+            android:exported="false" />
+        <activity
+            android:name=".designers_list"
+            android:exported="false" />
+        <activity
+            android:name=".favourite_design"
+            android:exported="false" />
+        <activity
+            android:name=".new_design"
+            android:exported="false" />
+        <activity
             android:name=".profile_page"
             android:exported="false" />
         <activity

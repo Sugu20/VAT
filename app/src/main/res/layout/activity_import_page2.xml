@@ -42,22 +42,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="164dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_80" />
-
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"
-        android:layout_marginTop="468dp"
+        android:layout_marginTop="428dp"
         android:text="View in AR"
         android:textColorLink="#303C53"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,39 +57,56 @@
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="484dp"
         android:scrollbarSize="40dp"
         android:text="Feedbacks"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="516dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="516dp"
         android:scrollbarSize="40dp"
         android:text="On this Design!"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="547dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="330dp"
-        android:layout_height="268dp"
+        android:layout_width="322dp"
+        android:layout_height="235dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="180dp"
         android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="330dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="596dp"
-        android:padding="12dp"
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87"
+        app:srcCompat="@drawable/rectangle_27" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="303dp"
+        android:layout_height="226dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.851" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
