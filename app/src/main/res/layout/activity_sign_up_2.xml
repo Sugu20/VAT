@@ -11,17 +11,19 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="772dp"
         android:text="Already have an account? SIGN IN"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="772dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="170dp"
         android:layout_height="60dp"
+        android:layout_marginTop="648dp"
         android:background="@drawable/edit_text_bg"
         android:fontFamily="@font/inter_light"
         android:text="LOGIN"
@@ -29,12 +31,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="627dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextText2"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="272dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
         android:padding="15dp"
@@ -43,12 +46,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="276dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextText4"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="352dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
         android:inputType="text"
@@ -58,12 +62,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="354dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextText5"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="436dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
         android:inputType="text"
@@ -73,12 +78,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="434dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextText6"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="520dp"
         android:background="@drawable/edit_text_bg"
         android:ems="10"
         android:fontFamily="@font/inter"
@@ -89,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="514dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView16"
@@ -97,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:fontFamily="@font/inter_black"
+        android:shadowColor="#000000"
         android:text=" Account!"
         android:textColor="#303C53"
         android:textSize="50dp"
@@ -110,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="@font/inter"
         android:text="Create an "
         android:textColor="#303C53"

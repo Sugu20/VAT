@@ -27,7 +27,7 @@
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_12"
+        app:srcCompat="@drawable/rectangle_12"/>
 
     <TextView
         android:id="@+id/textView30"

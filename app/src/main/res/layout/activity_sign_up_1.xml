@@ -53,9 +53,10 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="108dp"
         android:fontFamily="@font/inter_bold"
+        android:shadowColor="#000000"
         android:text="@string/as_text"
         android:textColor="#303C53"
-        android:textSize="60sp"
+        android:textSize="65sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
