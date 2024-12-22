@@ -1,117 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".dash_bg_image">
+<ImageView
+android:id="@+id/imageView2"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:alpha="0.5"
+android:scaleType="fitXY"
+app:srcCompat="@drawable/bg_image" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="418dp"
-        android:layout_height="924dp"
-        android:alpha="0.5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.515"
-        app:srcCompat="@drawable/bg_image" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="380dp"
-        android:layout_height="191dp"
-        android:layout_marginTop="24dp"
-        android:padding="11dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background ="@drawable/edit_text_bg" />
+<TextView
+android:id="@+id/txtNewDesign"
+android:layout_width="match_parent"
+android:layout_height="198dp"
+android:layout_marginHorizontal="10dp"
+android:layout_marginTop="16dp"
+android:fontFamily="@font/inter_extrabold"
+android:text="Upload New Design."
+android:gravity="center"
+android:textAlignment="center"
+android:padding="43dp"
+android:textColor="#FFFFFF"
+android:background="@drawable/edit_text_bg"
+android:textSize="48sp"
+app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="380dp"
-        android:layout_height="161dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="440dp"
+
+    <TextView
+        android:id="@+id/designers_list"
+        android:layout_width="match_parent"
+        android:layout_height="198dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edit_text_bg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="181dp"
-        android:layout_height="175dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="232dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/edit_text_bg" />
-
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="181dp"
-        android:layout_height="175dp"
-        android:layout_marginTop="232dp"
-        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/inter_extrabold"
+        android:gravity="center"
+        android:text="Designer's Previous Upload."
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background ="@drawable/edit_text_bg" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="334dp"
-        android:layout_height="89dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="472dp"
-        android:fontFamily="@font/inter_extrabold"
-        android:shadowColor="#FFFFFF"
-        android:text="Designer's Previous Designs"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/l1" />
 
     <TextView
-        android:id="@+id/textView26"
-        android:layout_width="303dp"
-        android:layout_height="121dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="52dp"
-        android:fontFamily="@font/inter_extrabold"
-        android:text="Upload New Designs."
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="300dp"
+        android:id="@+id/l1"
+        android:layout_width="225dp"
+        android:layout_height="198dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_bg"
         android:fontFamily="@font/inter_bold"
+        android:gravity="center"
         android:text="Profile."
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/txtNewDesign" />
 
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="40dp"
-        android:fontFamily="@font/inter_bold"
-        android:text="Chats."
-        android:textColor="#FFFFFF"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
