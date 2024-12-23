@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
         android:layout_width="163dp"
         android:layout_height="60dp"
@@ -66,8 +66,8 @@
         android:fontFamily="@font/inter_light"
         android:text="SIGN IN"
         android:textSize="24dp"
-        android:backgroundTint="@color/editTextColor"
         app:iconPadding="4dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
