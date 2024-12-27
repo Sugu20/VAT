@@ -22,7 +22,7 @@
         android:id="@+id/LightShadow"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:alpha="0.1"
+        android:alpha="0.3"
         android:visibility="gone"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -26,37 +26,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/inter_black"
         android:shadowColor="@color/black"
         android:text="Started!"
         android:textColor="#303C5C"
         android:textSize="64sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/textView2" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="744dp"
+        android:layout_marginTop="10dp"
         android:text="DON'T HAVE  ACCOUNT?"
         android:textColor="#303C5C"
+        app:layout_constraintTop_toBottomOf="@id/imageView19"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginHorizontal="125dp"
+        app:layout_constraintEnd_toEndOf="parent"
+         />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="772dp"
+        android:layout_marginTop="2dp"
         android:fontFamily="@font/inter_bold"
+        android:textSize="17dp"
         android:text="SIGN UP NOW"
         android:textColor="#303C5C"
+       app:layout_constraintTop_toBottomOf="@id/textView8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginHorizontal="140dp"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
@@ -68,11 +72,23 @@
         android:textSize="24dp"
         app:iconPadding="4dp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+       app:layout_constraintTop_toBottomOf="@id/textView5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62" />
+        android:layout_marginHorizontal="125dp"
+        android:layout_marginTop="125dp"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/line1"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="730dp"
+        app:layout_constraintTop_toBottomOf="@id/button2"
+        android:layout_marginTop="190dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="55dp"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
