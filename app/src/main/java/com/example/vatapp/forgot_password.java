@@ -8,7 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class forgot_password_1 extends AppCompatActivity {
+public class forgot_password extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

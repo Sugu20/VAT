@@ -17,7 +17,7 @@
             android:exported="false"
             android:theme="@style/Theme.VATAPP" />
         <activity
-            android:name=".forgot_password_1"
+            android:name=".forgot_password"
             android:exported="false" />
         <activity
             android:name=".designers_list_1"

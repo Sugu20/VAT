@@ -93,7 +93,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/bg_main"
         android:ems="10"
-        android:hint="ID"
+        android:text="ID"
         android:inputType="text"
         android:padding="15dp"
         android:textColor="@color/white"
