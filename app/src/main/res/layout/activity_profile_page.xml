@@ -31,6 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/rectangle_80"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintStart_toStartOf="@id/imageView13"
         app:layout_constraintTop_toBottomOf="@id/textView35"
         app:layout_constraintEnd_toEndOf="@id/imageView13"/>
@@ -40,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-
         android:fontFamily="@font/inter_bold"
         android:text="Profile."
         android:textColor="#FFFFFF"
@@ -54,6 +55,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:layout_marginHorizontal="50dp"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@id/imageView16"
         app:layout_constraintStart_toStartOf="@id/imageView16"
@@ -73,60 +75,64 @@
 
     <EditText
         android:id="@+id/editTextText8"
-        android:layout_width="257dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="Name"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="@id/imageView16"
         app:layout_constraintStart_toStartOf="@id/imageView16"
         app:layout_constraintTop_toTopOf="@id/imageView16" />
 
     <EditText
         android:id="@+id/editTextDate"
-        android:layout_width="263dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="date"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="@id/imageView16"
         app:layout_constraintStart_toStartOf="@id/imageView16"
         app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddress" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="263dp"
+        android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintStart_toStartOf="@id/imageView16"
         app:layout_constraintEnd_toEndOf="@id/imageView16"
-        app:layout_constraintTop_toBottomOf="@id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@id/editTextDate"
+        app:layout_constraintBottom_toTopOf="@id/button10"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button8"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="804dp"
+        android:layout_marginTop="150dp"
         android:text="LOGOUT"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="100dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintStart_toStartOf="@id/imageView16"
+        app:layout_constraintEnd_toEndOf="@id/imageView16"
+        app:layout_constraintTop_toBottomOf="@id/button10" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="90dp"
         android:layout_marginHorizontal="90dp"
         android:background="@drawable/edit_text_bg"
         android:textColor="@color/white"
         android:text="Uploaded Designs."
+        android:layout_marginBottom="170dp"
         app:layout_constraintEnd_toEndOf="@id/imageView16"
         app:layout_constraintStart_toStartOf="@id/imageView16"
+        app:layout_constraintBottom_toTopOf="@id/button8"
         app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine" />
 
 

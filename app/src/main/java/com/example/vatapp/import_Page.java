@@ -21,41 +21,41 @@ public class import_Page extends Activity {
 
         Button btnImport = findViewById(R.id.button_import);
 
-        btnImport.setOnClickListener(view -> showPopup());
+//        btnImport.setOnClickListener(view -> showPopup());
     }
 
-    private void showPopup() {
-        // Inflate popup layout
-        View popupView = LayoutInflater.from(this).inflate(R.layout.popup_import, findViewById(R.id.main), false);
-
-
-        // Create PopupWindow
-        PopupWindow popupWindow = new PopupWindow(
-                popupView,
-                ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                true
-        );
-
-        // Show the popup at the center of the main layout
-        popupWindow.showAtLocation(findViewById(R.id.main), 0, 0, 0);
-
-        // Initialize buttons in popup
-        Button btnGallery = popupView.findViewById(R.id.btn_gallery);
-        Button btnFiles = popupView.findViewById(R.id.btn_files);
-
-        // Handle gallery import
-        btnGallery.setOnClickListener(view -> {
-            openGallery();
-            popupWindow.dismiss();
-        });
-
-        // Handle file import
-        btnFiles.setOnClickListener(view -> {
-            openFileManager();
-            popupWindow.dismiss();
-        });
-    }
+//    private void showPopup() {
+//        // Inflate popup layout
+////        View popupView = LayoutInflater.from(this).inflate(R.layout.popup_import, findViewById(R.id.main), false);
+//
+//
+//        // Create PopupWindow
+//        PopupWindow popupWindow = new PopupWindow(
+//                popupView,
+//                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+//                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+//                true
+//        );
+//
+//        // Show the popup at the center of the main layout
+//        popupWindow.showAtLocation(findViewById(R.id.main), 0, 0, 0);
+//
+//        // Initialize buttons in popup
+//        Button btnGallery = popupView.findViewById(R.id.btn_gallery);
+//        Button btnFiles = popupView.findViewById(R.id.btn_files);
+//
+//        // Handle gallery import
+//        btnGallery.setOnClickListener(view -> {
+//            openGallery();
+//            popupWindow.dismiss();
+//        });
+//
+//        // Handle file import
+//        btnFiles.setOnClickListener(view -> {
+//            openFileManager();
+//            popupWindow.dismiss();
+//        });
+//    }
 
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);

@@ -11,6 +11,4 @@
         android:startColor="#303C53"
         android:endColor="#303C53"
         />
-        <size android:height=""
-            android:width=""/>
 </shape>
