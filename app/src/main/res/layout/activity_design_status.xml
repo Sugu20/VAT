@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DesignRequestDetails">
+    tools:context=".DesignStatus">
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
@@ -25,24 +25,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_12" />
-
-     <androidx.recyclerview.widget.RecyclerView
-         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="245dp"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="128dp" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Design Requests."
-      app:layout_constraintStart_toStartOf="@id/imageView5"
-        app:layout_constraintEnd_toEndOf="@id/imageView5"
-        />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
