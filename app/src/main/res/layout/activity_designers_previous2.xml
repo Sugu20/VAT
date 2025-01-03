@@ -97,17 +97,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="108dp"
         android:background="@drawable/rectangle_801"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
     <FrameLayout
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintTop_toBottomOf="@id/recyclerView3"
         app:layout_constraintStart_toStartOf="@id/imageView10"
         app:layout_constraintEnd_toEndOf="@id/imageView10"
@@ -123,5 +124,34 @@
             android:contentDescription="Home button"
             />
     </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/textView32">
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="156dp"
+            android:background="@drawable/edit_text_bg"
+            android:text="View in AR"
+            android:textColor="@color/white"
+       />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView2"
+            android:text="View in AR"
+             />
+
+</LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

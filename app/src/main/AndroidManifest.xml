@@ -13,36 +13,32 @@
         android:theme="@style/Theme.VATAPP"
         tools:targetApi="31">
         <activity
-            android:name=".favourite_design1"
-            android:exported="false"
-            android:theme="@style/Theme.VATAPP" />
-        <activity
-            android:name=".forgot_password"
+            android:name=".DesignRequestDetails"
             android:exported="false" />
         <activity
-            android:name=".designers_list_1"
-            android:exported="false" />
-        <activity
-            android:name=".new_design_1"
-            android:exported="false" />
-        <activity
-            android:name=".designers_list"
-            android:exported="false" />
-        <activity
-            android:name=".favourite_design"
-            android:exported="false" />
-        <activity
-            android:name=".new_design"
-            android:exported="false" />
-        <activity
-            android:name=".profile_page"
-            android:exported="true" >
+            android:name=".DesignRequests"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".forgot_password"
+            android:exported="false" />
+        <activity
+            android:name=".designers_list"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".profile_page"
+            android:exported="true" />
         <activity
             android:name=".designers_previous2"
             android:exported="false" />
@@ -65,9 +61,6 @@
             android:name=".dash_designer"
             android:exported="false" />
         <activity
-            android:name=".designers_dash"
-            android:exported="false" />
-        <activity
             android:name=".signup2"
             android:exported="false" />
         <activity
@@ -81,9 +74,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

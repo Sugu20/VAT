@@ -5,7 +5,7 @@
     <string name="tryout_text">TRYOUT</string>
     <string name="vat_text">VAT</string>
     <string name="image_description">Description of the image</string>
-    <string name="designnew_text">Upload New Design.</string>
+    <string name="designnew_text">Upload Design.</string>
     <string name="import_botton">IMPORT</string>
     <string name="file_btn">Files</string>
     <string name="Import_view">Import from</string>
@@ -64,4 +64,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

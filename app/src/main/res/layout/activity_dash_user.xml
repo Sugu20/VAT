@@ -23,10 +23,10 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/inter_extrabold"
-        android:text="New Designs."
+        android:text="Request New Designs."
         android:gravity="center"
         android:textAlignment="center"
-        android:padding="40sp"
+        android:padding="35sp"
         android:textColor="#FFFFFF"
         android:background="@drawable/edit_text_bg"
         android:textSize="48sp"
@@ -78,7 +78,7 @@
             android:gravity="center"
             android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/inter_extrabold"
-            android:text="Favourite Designs."
+            android:text="Design Status."
             android:textColor="#FFFFFF"
             android:textSize="32sp"/>
 
