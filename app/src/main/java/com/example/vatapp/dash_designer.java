@@ -1,24 +1,70 @@
-package com.example.vatapp;
+package com.example.vatapp; // replace with your app's package name
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.vatapp.DesignRequests;
+import com.example.vatapp.designers_previous;
+import com.example.vatapp.import_Page;
+import com.example.vatapp.profile_page;
 
 public class dash_designer extends AppCompatActivity {
+
+    private TextView uploadDesignTextView, profileTextView, designRequestsTextView, designersPreviousUploadTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dash_designer);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        setContentView(R.layout.activity_dash_designer); // replace with the correct layout file name
+
+        // Initialize views
+        uploadDesignTextView = findViewById(R.id.txtNewDesign);
+        profileTextView = findViewById(R.id.textView24);
+        designRequestsTextView = findViewById(R.id.textView21);
+        designersPreviousUploadTextView = findViewById(R.id.designers_list);
+
+        // Set OnClickListener for "Upload Design"
+        uploadDesignTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the Import Page
+                Intent intent = new Intent(dash_designer.this, import_Page.class); // replace with actual class name for import page
+                startActivity(intent);
+            }
+        });
+
+        // Set OnClickListener for "Profile"
+        profileTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the Profile Page
+                Intent intent = new Intent(dash_designer.this, profile_page.class); // replace with actual class name for profile page
+                startActivity(intent);
+            }
+        });
+
+        // Set OnClickListener for "Design Requests"
+        designRequestsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the Design Requests Page
+                Intent intent = new Intent(dash_designer.this, DesignRequests.class); // replace with actual class name for design requests page
+                startActivity(intent);
+            }
+        });
+
+        // Set OnClickListener for "Designer's Previous Upload"
+        designersPreviousUploadTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the Designer's Previous Upload Page
+                Intent intent = new Intent(dash_designer.this, designers_previous.class); // replace with actual class name for previous uploads page
+                startActivity(intent);
+            }
         });
     }
 }
