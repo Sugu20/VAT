@@ -22,21 +22,21 @@
         android:id="@+id/LightShadow"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:alpha="0.3"
+        android:alpha="0.6"
         android:visibility="gone"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Light"
-        app:srcCompat="@drawable/light2" />
+        app:srcCompat="@drawable/light3" />
     <LinearLayout
         android:id="@+id/txtLay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="250dp"
+        app:layout_constraintTop_toBottomOf="@id/Light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <TextView
@@ -90,10 +90,10 @@
         android:layout_marginTop="3dp"
         android:includeFontPadding="false"
         android:contentDescription="@string/vat_text"
-        android:fontFamily="@font/inter_extrabold"
+        android:fontFamily="@font/londrina_shadow"
         android:text="@string/vat_text"
         android:textColor="#BBCFEF"
-        android:textSize="100sp"
+        android:textSize="150sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtLay" />

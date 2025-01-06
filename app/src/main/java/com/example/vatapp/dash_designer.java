@@ -7,11 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.vatapp.DesignRequests;
-import com.example.vatapp.designers_previous;
-import com.example.vatapp.import_Page;
-import com.example.vatapp.profile_page;
-
 public class dash_designer extends AppCompatActivity {
 
     private TextView uploadDesignTextView, profileTextView, designRequestsTextView, designersPreviousUploadTextView;
@@ -52,7 +47,7 @@ public class dash_designer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the Design Requests Page
-                Intent intent = new Intent(dash_designer.this, DesignRequests.class); // replace with actual class name for design requests page
+                Intent intent = new Intent(dash_designer.this, DesignRequestList.class); // replace with actual class name for design requests page
                 startActivity(intent);
             }
         });

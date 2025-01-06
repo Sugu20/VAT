@@ -7,11 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.vatapp.DesignRequests;
-import com.example.vatapp.DesignStatus;
-import com.example.vatapp.designers_list;
-import com.example.vatapp.profile_page;
-
 public class dash_user extends AppCompatActivity {
 
     private TextView requestNewDesign, designStatus, profile, designersList;
@@ -32,7 +27,7 @@ public class dash_user extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the Design Request Page
-                Intent intent = new Intent(dash_user.this, DesignRequests.class); // Replace with the actual class name
+                Intent intent = new Intent(dash_user.this, DesignRequestList.class); // Replace with the actual class name
                 startActivity(intent);
             }
         });
@@ -42,7 +37,7 @@ public class dash_user extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the Design Status Page
-                Intent intent = new Intent(dash_user.this, DesignStatus.class); // Replace with the actual class name
+                Intent intent = new Intent(dash_user.this, UserStatus.class); // Replace with the actual class name
                 startActivity(intent);
             }
         });

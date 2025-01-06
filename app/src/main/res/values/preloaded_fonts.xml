@@ -7,5 +7,6 @@
         <item>@font/inter_extrabold</item>
         <item>@font/inter_light</item>
         <item>@font/inter_medium</item>
+        <item>@font/londrina_shadow</item>
     </array>
 </resources>
