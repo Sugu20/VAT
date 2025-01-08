@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DesignersPrevious2Activity extends AppCompatActivity {
+public class DesignersPrevious2 extends AppCompatActivity {
 
     private RecyclerView imageRecyclerView, feedbackRecyclerView;
     private ImageGridAdapter imageAdapter; // Adapter for displaying the selected image
@@ -27,7 +27,7 @@ public class DesignersPrevious2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.designers_previous2); // Ensure this matches your XML filename
+        setContentView(R.layout.activity_designers_previous2); // Ensure this matches your XML filename
 
         imageRecyclerView = findViewById(R.id.recyclerView2);
         feedbackRecyclerView = findViewById(R.id.recyclerView3);
@@ -53,7 +53,7 @@ public class DesignersPrevious2Activity extends AppCompatActivity {
         findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DesignersPrevious2Activity.this, "View in AR clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DesignersPrevious2.this, "View in AR clicked!", Toast.LENGTH_SHORT).show();
                 // TODO: Add AR integration logic here
             }
         });
@@ -62,7 +62,7 @@ public class DesignersPrevious2Activity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent homeIntent = new Intent(DesignersPrevious2Activity.this, DashDesignerActivity.class);
+                Intent homeIntent = new Intent(DesignersPrevious2.this, dash_designer.class);
                 startActivity(homeIntent);
                 finish();
             }

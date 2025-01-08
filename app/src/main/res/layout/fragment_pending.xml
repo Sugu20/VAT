@@ -5,11 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".PendingFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Pending"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="34sp"
-        android:textColor="@color/black"
-        android:text="pending fragment" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

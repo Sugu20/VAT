@@ -68,6 +68,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView30" />
 
     <FrameLayout
+        android:id="@+id/homebutton"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="@id/imageView7"
@@ -85,6 +86,18 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/baseline_home_24" />
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/Backbutton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        app:layout_constraintStart_toStartOf="@id/imageView7"
+        app:layout_constraintEnd_toStartOf="@id/homebutton"
+        app:layout_constraintTop_toBottomOf="@id/button7"
+        android:layout_marginTop="290dp"
+        android:layout_marginEnd="30dp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

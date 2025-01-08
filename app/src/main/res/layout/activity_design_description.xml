@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RequestNewDesign">
+    tools:context=".DesignDescription"
+    >
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
@@ -13,8 +14,6 @@
         android:alpha="0.5"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/bg_image" />
-
-
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
@@ -27,30 +26,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_12" />
-    <ImageView
-        android:id="@+id/imageuploded"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:visibility="gone"
-        android:background="@drawable/rectangle_84"
-        app:layout_constraintTop_toBottomOf="@id/text26"
-        android:layout_marginHorizontal="30dp"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/Uploadbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text26"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/edit_text_bg"
-        android:layout_marginHorizontal="90dp"
-        android:text="Upload"
-        android:visibility="visible"
-        android:textSize="15sp"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@id/imageView5"
-        app:layout_constraintEnd_toEndOf="@id/imageView5"/>
-
 
     <TextView
         android:id="@+id/text26"
@@ -61,12 +36,10 @@
         android:layout_marginTop="40dp"
         android:text="Sample Design.(Optional)"
         android:textSize="25sp"
-        android:visibility="visible"
         android:textColor="@color/white"
         android:fontFamily="@font/inter_medium"
         app:layout_constraintStart_toStartOf="@id/imageView5"
         app:layout_constraintEnd_toEndOf="@id/imageView5"/>
-
 
     <TextView
         android:id="@+id/text25"
@@ -74,11 +47,22 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/imageView5"
         android:layout_marginTop="40dp"
-        android:text="Request New Design."
+        android:text="Design Description."
         android:layout_marginHorizontal="30dp"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:fontFamily="@font/inter_extrabold"
+        app:layout_constraintStart_toStartOf="@id/imageView5"
+        app:layout_constraintEnd_toEndOf="@id/imageView5"/>
+
+    <ImageView
+        android:id="@+id/imageview15"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/rectangle_84"
+        app:layout_constraintTop_toBottomOf="@id/text26"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@id/imageView5"
         app:layout_constraintEnd_toEndOf="@id/imageView5"/>
 
@@ -92,13 +76,11 @@
         android:text="Description of Design."
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:visibility="visible"
-        android:layout_marginTop="120dp"
-        app:layout_constraintTop_toBottomOf="@id/Uploadbutton"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@id/imageView5"
         app:layout_constraintStart_toStartOf="@id/imageView5"
+        app:layout_constraintTop_toBottomOf="@id/imageview15"
         tools:layout_editor_absoluteY="346dp" />
-
 
     <EditText
         android:id="@+id/editTextTextMultiLine2"
@@ -110,73 +92,67 @@
         app:layout_constraintStart_toStartOf="@id/imageView5"
         app:layout_constraintEnd_toEndOf="@id/imageView5"
         android:layout_marginTop="40dp"
-        android:visibility="visible"
         android:layout_marginHorizontal="30dp"
         android:background="@drawable/rectangle_84"
-         />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button11"
+        />
+    <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine2"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/edit_text_bg"
-        android:layout_marginHorizontal="120dp"
-        android:text="Send"
-        android:visibility="visible"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:fontFamily="@font/inter_medium"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="@id/imageView5"
-        app:layout_constraintEnd_toEndOf="@id/imageView5"/>
+        app:layout_constraintEnd_toEndOf="@id/imageView5"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine2">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="center"
+            android:text="Accept"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="30dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="center"
+            android:text="Reject"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="30dp"
+            />
+
+    </LinearLayout>
 
 
     <FrameLayout
-        android:id="@+id/homebutton1"
+        android:id="@+id/homebutton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="800dp"
-        app:layout_constraintTop_toTopOf="@id/imageView5"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/linear1"
         app:layout_constraintStart_toStartOf="@id/imageView5"
-        app:layout_constraintEnd_toEndOf="@id/imageView5">
+        app:layout_constraintEnd_toEndOf="@id/imageView5"
+        >
 
         <ImageButton
+            android:id="@+id/imageView22"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
             android:contentDescription="Home button"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/baseline_home_24" />
+            app:srcCompat="@drawable/baseline_home_24"
+            />
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/TextPrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Design Request Succesfully Sent."
-        android:textColor="@color/white"
-        android:fontFamily="@font/inter_bold"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="@id/imageView5"
-        app:layout_constraintStart_toStartOf="@id/imageView5"
-        app:layout_constraintEnd_toEndOf="@id/imageView5"
-        android:layout_marginTop="400dp"
-        android:visibility="gone"/>
-    <TextView
-        android:id="@+id/TextPrompt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go Back to see your status of your Design!"
-        android:textColor="@color/white"
-        android:fontFamily="@font/inter_light"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/imageView5"
-        app:layout_constraintEnd_toEndOf="@id/imageView5"
-        app:layout_constraintTop_toBottomOf="@id/TextPrompt"/>
 
     <ImageView
         android:id="@+id/Backbutton"
@@ -184,10 +160,10 @@
         android:layout_height="50dp"
         app:srcCompat="@android:drawable/ic_menu_revert"
         app:layout_constraintStart_toStartOf="@id/imageView5"
-        app:layout_constraintEnd_toStartOf="@id/homebutton1"
-        android:layout_marginTop="800dp"
+        app:layout_constraintEnd_toStartOf="@id/homebutton"
+        app:layout_constraintTop_toBottomOf="@id/linear1"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
-        app:layout_constraintTop_toTopOf="@id/imageView5"
-        />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
