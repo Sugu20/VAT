@@ -191,10 +191,11 @@
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/homebutton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="200dp"
-                app:layout_constraintTop_toBottomOf="@id/feedback"
+                app:layout_constraintTop_toBottomOf="@id/linear1"
                 app:layout_constraintStart_toStartOf="@id/scrollable"
                 app:layout_constraintEnd_toEndOf="@id/scrollable">
 
@@ -217,6 +218,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/rectangle_84"
                 android:visibility="gone"
+                android:inputType="textMultiLine"
                 app:layout_constraintStart_toStartOf="@id/scrollable"
                 app:layout_constraintEnd_toEndOf="@id/scrollable"
                 android:layout_marginHorizontal="30dp"/>
@@ -225,7 +227,7 @@
                 android:id="@+id/button8"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginHorizontal="95dp"
                 android:background="@drawable/edit_text_bg"
                 android:textColor="@color/white"
