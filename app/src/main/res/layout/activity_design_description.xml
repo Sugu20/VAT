@@ -21,7 +21,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title or Description"
+        android:text="Design Description"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:layout_marginTop="20dp"
@@ -111,31 +111,20 @@
                     android:layout_weight="1"
                     android:text="Accept"
                     android:layout_marginHorizontal="20dp"
-                    android:background="@drawable/edit_text_bg"
+                    android:background="@drawable/button_background"
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/rejectButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:text="Reject"
-                    android:background="@drawable/edit_text_bg"
+                    android:background="@drawable/button_baground2"
                     android:textColor="@color/white" />
             </LinearLayout>
 
             <!-- Second Multiline Text -->
-            <EditText
-                android:id="@+id/multiLineText2"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/rectangle_84"
-                android:gravity="top"
-                android:layout_marginHorizontal="15dp"
-                android:hint="Add more details here..."
-                android:inputType="textMultiLine" />
 
             <!-- Upload Button -->
             <androidx.appcompat.widget.AppCompatButton
@@ -148,9 +137,10 @@
                 android:background="@drawable/edit_text_bg"
                 android:textColor="@color/white" />
             <ImageView
+                android:id="@+id/finaldesign"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="30dp"/>
 
         </LinearLayout>
     </ScrollView>

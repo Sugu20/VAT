@@ -27,7 +27,7 @@ public class dash_designer extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the Import Page
-                Intent intent = new Intent(dash_designer.this, import_Page.class); // replace with actual class name for import page
+                Intent intent = new Intent(dash_designer.this, DesignRequestList.class); // replace with actual class name for import page
                 startActivity(intent);
             }
         });

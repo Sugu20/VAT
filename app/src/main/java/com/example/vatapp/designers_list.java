@@ -41,7 +41,7 @@ public class designers_list extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent homeIntent = new Intent(designers_list.this, dash_designer.class);
+                Intent homeIntent = new Intent(designers_list.this, dash_user.class);
                 startActivity(homeIntent);
                 finish();
             }

@@ -37,7 +37,7 @@ public class dash_user extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the Design Status Page
-                Intent intent = new Intent(dash_user.this, UserStatus.class); // Replace with the actual class name
+                Intent intent = new Intent(dash_user.this,UserDesignStatus.class); // Replace with the actual class name
                 startActivity(intent);
             }
         });
@@ -47,7 +47,7 @@ public class dash_user extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to the Profile Page
-                Intent intent = new Intent(dash_user.this, profile_page.class); // Replace with the actual class name
+                Intent intent = new Intent(dash_user.this, UserProfile.class); // Replace with the actual class name
                 startActivity(intent);
             }
         });

@@ -55,7 +55,7 @@ public class designers_previous extends AppCompatActivity {
         adapter.setOnItemClickListener(new ImageGridAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Intent detailIntent = new Intent(designers_previous.this, designers_list.class);
+                Intent detailIntent = new Intent(designers_previous.this, DesignersPrevious2.class);
                 detailIntent.putExtra("imageUrl", imageList.get(position)); // Pass image URL to next activity
                 startActivity(detailIntent);
             }

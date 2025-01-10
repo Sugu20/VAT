@@ -29,9 +29,9 @@ public class DesignersPrevious2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designers_previous2); // Ensure this matches your XML filename
 
-        imageRecyclerView = findViewById(R.id.recyclerView2);
-        feedbackRecyclerView = findViewById(R.id.recyclerView3);
-        homeButton = findViewById(R.id.imageView22);
+//        imageRecyclerView = findViewById(R.id.recyclerView2);
+//        feedbackRecyclerView = findViewById(R.id.recyclerView3);
+//        homeButton = findViewById(R.id.imageView22);
 
         // Set up RecyclerView for the selected image
         imageRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -42,8 +42,8 @@ public class DesignersPrevious2 extends AppCompatActivity {
         // Set up RecyclerView for feedback
         feedbackRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         feedbackList = new ArrayList<>();
-        feedbackAdapter = new FeedbackAdapter(feedbackList, this);
-        feedbackRecyclerView.setAdapter(feedbackAdapter);
+//        feedbackAdapter = new FeedbackAdapter(feedbackList, this);
+//        feedbackRecyclerView.setAdapter(feedbackAdapter);
 
         // Fetch selected image and feedback
         fetchSelectedImage();
@@ -87,11 +87,11 @@ public class DesignersPrevious2 extends AppCompatActivity {
 
     private void fetchFeedback() {
         // TODO: Replace with API call to fetch feedback for the design
-        feedbackList.add(new Feedback("User123", "Great design!"));
-        feedbackList.add(new Feedback("User456", "Can you tweak the colors?"));
-        feedbackList.add(new Feedback("User789", "Amazing work!"));
-
-        // Notify adapter about data changes
-        feedbackAdapter.notifyDataSetChanged();
+//        feedbackList.add(new Feedback("User123", "Great design!"));
+//        feedbackList.add(new Feedback("User456", "Can you tweak the colors?"));
+//        feedbackList.add(new Feedback("User789", "Amazing work!"));
+//
+//        // Notify adapter about data changes
+//        feedbackAdapter.notifyDataSetChanged();
     }
 }

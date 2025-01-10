@@ -46,7 +46,7 @@ public class ImageGridAdapter extends RecyclerView.Adapter<ImageGridAdapter.View
         // Use Glide to load the image
         Glide.with(context)
                 .load(imageUrl)
-                .placeholder(R.drawable.placeholder) // Add a placeholder drawable
+                .placeholder(R.drawable.icon_box) // Add a placeholder drawable
                 .into(holder.imageView);
     }
 
