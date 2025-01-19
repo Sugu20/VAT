@@ -1,63 +1,57 @@
-package com.example.vatapp; // Replace with your app's package name
+package com.example.vatapp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class dash_user extends AppCompatActivity {
 
-    private TextView requestNewDesign, designStatus, profile, designersList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_user); // Ensure this matches your XML file name
+        setContentView(R.layout.activity_dash_user);
 
-        // Initialize views
-        requestNewDesign = findViewById(R.id.txtNewDesign);
-        designStatus = findViewById(R.id.textView21);
-        profile = findViewById(R.id.textView24);
-        designersList = findViewById(R.id.designers_list);
+        // Initialize TextViews
+        TextView txtNewDesign = findViewById(R.id.txtNewDesign);
+        TextView profile = findViewById(R.id.textView24);
+        TextView designStatus = findViewById(R.id.textView21);
+        TextView designersList = findViewById(R.id.designers_list);
 
-        // Set OnClickListener for "Request New Design"
-        requestNewDesign.setOnClickListener(new View.OnClickListener() {
+        // Set click listeners
+        txtNewDesign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to the Design Request Page
-                Intent intent = new Intent(dash_user.this, DesignRequestList.class); // Replace with the actual class name
+                // Navigate to Request New Design page
+                Intent intent = new Intent(dash_user.this, RequestNewDesign.class);
                 startActivity(intent);
             }
         });
 
-        // Set OnClickListener for "Design Status"
-        designStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to the Design Status Page
-                Intent intent = new Intent(dash_user.this,UserDesignStatus.class); // Replace with the actual class name
-                startActivity(intent);
-            }
-        });
-
-        // Set OnClickListener for "Profile"
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to the Profile Page
-                Intent intent = new Intent(dash_user.this, UserProfile.class); // Replace with the actual class name
+                // Navigate to User Profile page
+                Intent intent = new Intent(dash_user.this, UserProfile.class);
                 startActivity(intent);
             }
         });
 
-        // Set OnClickListener for "Designer's List"
+        designStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to Design Status page
+                Intent intent = new Intent(dash_user.this, UserDesignStatus.class);
+                startActivity(intent);
+            }
+        });
+
         designersList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to the Designer's List Page
-                Intent intent = new Intent(dash_user.this, designers_list.class); // Replace with the actual class name
+                // Navigate to Designers List page
+                Intent intent = new Intent(dash_user.this, designers_list.class);
                 startActivity(intent);
             }
         });

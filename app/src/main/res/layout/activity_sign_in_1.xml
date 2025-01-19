@@ -5,8 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".SignIn">
+    android:background="#004F39"
+    tools:context=".SignIn"
+    >
 
     <TextView
         android:id="@+id/textView2"
@@ -16,7 +17,7 @@
         android:layout_marginTop="228dp"
         android:fontFamily="@font/inter_medium"
         android:text="Let's Get"
-        android:textColor="#303C5C"
+        android:textColor="#FEFACA"
         android:textSize="48sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,9 +29,11 @@
         android:layout_marginStart="72dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/inter_black"
-        android:shadowColor="@color/black"
         android:text="Started!"
-        android:textColor="#303C5C"
+        android:shadowColor="@color/black"
+        android:shadowRadius="8"
+        android:shadowDy="9"
+        android:textColor="#FEFACA"
         android:textSize="64sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/textView2" />
@@ -41,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="DON'T HAVE  ACCOUNT?"
-        android:textColor="#303C5C"
+        android:textColor="#FEFACA"
         app:layout_constraintTop_toBottomOf="@id/imageView19"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="125dp"
@@ -52,26 +55,26 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="140dp"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/inter_bold"
-        android:textSize="17dp"
         android:text="SIGN UP NOW"
-        android:textColor="#303C5C"
-       app:layout_constraintTop_toBottomOf="@id/textView8"
+        android:textColor="#FEFACA"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginHorizontal="140dp"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/textView8" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
         android:layout_width="163dp"
         android:layout_height="60dp"
         android:background="@drawable/edit_text_bg"
-        android:fontFamily="@font/inter_light"
+        android:fontFamily="@font/inter_medium"
         android:text="SIGN IN"
         android:textSize="24dp"
         app:iconPadding="4dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
        app:layout_constraintTop_toBottomOf="@id/textView5"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="125dp"

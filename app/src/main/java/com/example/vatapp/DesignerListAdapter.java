@@ -45,8 +45,8 @@ public class DesignerListAdapter extends RecyclerView.Adapter<DesignerListAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.designerName);
-            emailTextView = itemView.findViewById(R.id.designerEmail);
+            nameTextView = itemView.findViewById(R.id.titleTextView);
+            emailTextView = itemView.findViewById(R.id.descriptionTextView);
         }
     }
 }

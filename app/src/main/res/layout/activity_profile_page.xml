@@ -11,9 +11,9 @@
         android:id="@+id/imageView12"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.5"
+        android:alpha="0.8"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/bg_image" />
+        app:srcCompat="@drawable/bggg" />
 
     <ImageView
         android:id="@+id/imageView13"
@@ -44,7 +44,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/inter_bold"
         android:text="Profile."
-        android:textColor="#FFFFFF"
+        android:textColor="#FEFACA"
         android:textSize="40dp"
         android:gravity="center"
        android:layout_marginHorizontal="40dp"
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:text="LOGOUT"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginHorizontal="100dp"
         android:background="@drawable/edit_text_bg"
         app:layout_constraintStart_toStartOf="@id/imageView16"
@@ -105,7 +105,7 @@
         android:layout_marginTop="130dp"
         android:background="@drawable/edit_text_bg"
         android:text="Uploaded Designs."
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@id/imageView16"
         app:layout_constraintStart_toStartOf="@id/imageView16"
         app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine" />

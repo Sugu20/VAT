@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#303C5C"
+    android:background="#004F39"
     tools:context=".MainActivity">
 
     <ImageView
@@ -35,9 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="250dp"
 
-        app:layout_constraintTop_toBottomOf="@id/Light"
+        app:layout_constraintTop_toTopOf="@id/textView29"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <TextView
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_medium"
             android:text="@string/virtual_text"
-            android:textColor="#F8F8F8"
+            android:textColor="#FEFACA"
             android:layout_marginEnd="5dp"
             android:textColorLink="@color/white"
             android:textSize="18sp" />
@@ -58,7 +57,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/ad_text"
             android:layout_marginEnd="5dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#FEFACA"
             android:textSize="18sp" />
 
         <TextView
@@ -67,7 +66,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_medium"
             android:text="@string/tryout_text"
-            android:textColor="#FFFFFF"
+            android:textColor="#FEFACA"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -77,6 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="fitXY"
+        android:layout_marginTop="10dp"
         android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,10 +92,11 @@
         android:contentDescription="@string/vat_text"
         android:fontFamily="@font/londrina_shadow"
         android:text="@string/vat_text"
-        android:textColor="#BBCFEF"
+        android:textColor="#FEFACA"
         android:textSize="150sp"
+        android:layout_marginTop="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtLay" />
+        app:layout_constraintTop_toBottomOf="@id/Light" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,9 +13,10 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.5"
+        android:alpha="0.8"
+        android:background="#151513"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/bg_image" />
+        app:srcCompat="@drawable/bggg" />
 
     <!-- Inner Background -->
     <ImageView
@@ -41,7 +42,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="@font/inter_extrabold"
         android:text="Design Description."
-        android:textColor="@color/white"
+        android:textColor="#EAE9E7"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +72,7 @@
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="Sample Design (Optional)"
-                android:textColor="@color/white"
+                android:textColor="#EAE9E7"
                 android:textSize="25sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +92,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="Description of Design"
-                android:textColor="@color/white"
+                android:textColor="#EAE9E7"
                 android:textSize="25sp"
                 app:layout_constraintTop_toBottomOf="@id/uploadedimg" />
 
@@ -125,7 +126,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:textColor="@color/white"
+                android:textColor="#EAE9E7"
                 app:layout_constraintTop_toBottomOf="@id/Text28" />
 
 
@@ -159,7 +160,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/edit_text_bg"
                 android:text="View in AR"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@id/image2" />
 
@@ -182,7 +183,7 @@
                     android:background="@drawable/edit_text_bg"
                     android:gravity="center"
                     android:text="Accept"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/rejectButton1"
@@ -193,7 +194,7 @@
                     android:background="@drawable/edit_text_bg"
                     android:gravity="center"
                     android:text="Reject"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <EditText
@@ -217,7 +218,7 @@
                 android:layout_marginTop="230dp"
                 android:background="@drawable/edit_text_bg"
                 android:text="Submit"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@id/linear1" />
 

@@ -2,6 +2,7 @@ package com.example.vatapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,11 +11,24 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
+import com.example.vatapp.response.RegisterRequest;
+import com.example.vatapp.response.RegisterResponse;
+
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class signup2 extends AppCompatActivity {
 
     private Button signUpButton;
     private TextView signInText;
     private EditText nameInput, emailInput, phoneInput, passwordInput, confirmPasswordInput;
+
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +83,43 @@ public class signup2 extends AppCompatActivity {
             return;
         }
 
-        // Handle successful sign up (e.g., save user data, etc.)
-        // For now, just show a success message and navigate back to SignIn1
-        Toast.makeText(this, "Sign up successful!", Toast.LENGTH_SHORT).show();
+        String role = getIntent().getStringExtra("USER_TYPE");
+        sendToApi(name, role, phone, password, email);
+    }
 
-        // Navigate to Sign In page (SignIn1)
-        navigateToSignIn();
+
+    private void sendToApi(String name, String role, String phone, String password, String email) {
+
+        RegisterRequest request = new RegisterRequest(name, role, email, phone, password);
+
+        Call<RegisterResponse> call = RetrofitClient.getInstance().create(ApiService.class).registerUser(request);
+
+
+        call.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+
+                if (response.isSuccessful()) {
+                    if (Objects.equals(response.body().getStatus(), "success")) {
+
+                        Toast.makeText(signup2.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        navigateToSignIn();
+                    } else {
+
+                        Toast.makeText(signup2.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+
+                Toast.makeText(signup2.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "onFailure: " + t.getMessage());
+            }
+        });
+
     }
 
     /**

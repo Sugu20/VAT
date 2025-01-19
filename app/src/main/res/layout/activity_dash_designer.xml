@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".dash_bg_image">
+    android:layout_height="match_parent">
 <ImageView
 android:id="@+id/imageView2"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:alpha="0.5"
+android:alpha="0.9"
 android:scaleType="fitXY"
-app:srcCompat="@drawable/bg_image" />
+app:srcCompat="@drawable/bggg" />
 
 
 <TextView
@@ -26,7 +25,7 @@ android:text="Design Request List."
 android:gravity="center"
 android:textAlignment="center"
 android:padding="50dp"
-android:textColor="#FFFFFF"
+android:textColor="@color/black"
 android:background="@drawable/edit_text_bg"
 android:textSize="40sp"
 app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +43,7 @@ app:layout_constraintTop_toTopOf="parent" />
         android:padding="43dp"
         android:text="Designer's Previous Upload."
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +70,7 @@ app:layout_constraintTop_toTopOf="parent" />
             android:text="Profile."
             android:layout_weight="1"
             android:layout_marginEnd="10dp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:textSize="40sp" />
 
         <TextView
@@ -83,7 +82,7 @@ app:layout_constraintTop_toTopOf="parent" />
             android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/inter_bold"
             android:text="Designs Feedback."
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:textSize="32sp"/>
 
     </LinearLayout>

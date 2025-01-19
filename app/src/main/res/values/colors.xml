@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="editTextColor">#303C5C</color>
+    <color name="editTextColor">#EAE9E7</color>
     <color name="main_color">#6A7490</color>
+    <color name="state_color">#004F39</color>
 </resources>
