@@ -10,8 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
+import com.example.vatapp.response.DesignersResponse;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class designers_list extends AppCompatActivity {
 
@@ -49,17 +57,34 @@ public class designers_list extends AppCompatActivity {
     }
 
     private void fetchDesigners() {
-        // TODO: Replace with API integration
-        // Dummy data for testing
-        designerList.add(new Designer("Alice Johnson", "alice@example.com"));
-        designerList.add(new Designer("Bob Smith", "bob@example.com"));
-        designerList.add(new Designer("Catherine Lee", "catherine@example.com"));
-        designerList.add(new Designer("Daniel Brown", "daniel@example.com"));
+        ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
 
-        // Notify adapter about data changes
-        adapter.notifyDataSetChanged();
+        apiService.getDesigners().enqueue(new Callback<DesignersResponse>() {
+            @Override
+            public void onResponse(Call<DesignersResponse> call, Response<DesignersResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    DesignersResponse designerResponse = response.body();
 
-        // Show toast for testing
-        Toast.makeText(this, "Fetched " + designerList.size() + " designers", Toast.LENGTH_SHORT).show();
+                    if ("success".equalsIgnoreCase(designerResponse.getStatus())) {
+                        // Update the designer list
+                        designerList.clear();
+                        designerList.addAll(designerResponse.getData());
+                        adapter.notifyDataSetChanged();
+
+                        Toast.makeText(designers_list.this, "Fetched " + designerList.size() + " designers", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(designers_list.this, "Error: " + designerResponse.getStatus(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(designers_list.this, "Failed to fetch designers", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DesignersResponse> call, Throwable t) {
+                Toast.makeText(designers_list.this, "API call failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 }

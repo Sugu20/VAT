@@ -1,9 +1,11 @@
 package com.example.vatapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,15 @@ public class DesignerListAdapter extends RecyclerView.Adapter<DesignerListAdapte
         Designer designer = designerList.get(position);
         holder.nameTextView.setText(designer.getName());
         holder.emailTextView.setText(designer.getEmail());
+
+        // Navigate to profile_page on button click
+        holder.goToDetailsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, profile_page.class);
+            intent.putExtra("user_id", designer.getUserId());
+            intent.putExtra("name", designer.getName());
+            intent.putExtra("email", designer.getEmail());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -42,11 +53,13 @@ public class DesignerListAdapter extends RecyclerView.Adapter<DesignerListAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView, emailTextView;
+        Button goToDetailsButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.titleTextView);
             emailTextView = itemView.findViewById(R.id.descriptionTextView);
+            goToDetailsButton = itemView.findViewById(R.id.goToDetailsButton);
         }
     }
 }

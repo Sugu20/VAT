@@ -76,14 +76,14 @@ public class  UserProfile extends AppCompatActivity {
         dateOfCreation.setText("Date Created: 2023-01-01");
         accountDetails.setText("Account Details:");
 
-        nameField.setText("John Doe");
-        phoneField.setText("9876543210");
-        emailField.setText("john.doe@example.com");
+//        nameField.setText("John Doe");
+//        phoneField.setText("9876543210");
+//        emailField.setText("john.doe@example.com");
 
         // Disable fields initially
-        nameField.setEnabled(false);
-        phoneField.setEnabled(false);
-        emailField.setEnabled(false);
+//        nameField.setEnabled(false);
+//        phoneField.setEnabled(false);
+//        emailField.setEnabled(false);
     }
 
     private void saveUserDetails() {
