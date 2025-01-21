@@ -5,8 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
+import com.example.vatapp.response.ForgotPasswordRequest;
+import com.example.vatapp.response.ForgotPasswordResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class forgot_password extends AppCompatActivity {
@@ -28,26 +38,48 @@ public class forgot_password extends AppCompatActivity {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get user input
                 String email = emailEditText.getText().toString().trim();
                 String newPassword = newPasswordEditText.getText().toString().trim();
 
-
                 if (email.isEmpty() || newPassword.isEmpty()) {
-                    // You can show a Toast message or other feedback to the user if needed
-                    return; // Exit the method if fields are empty
+                    Toast.makeText(forgot_password.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                // Process the password reset (you can add your logic to send data to backend here)
-                // For now, just simulate a successful reset
+                // Prepare the API request
+                ForgotPasswordRequest request = new ForgotPasswordRequest(email, newPassword);
+                ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
 
-                // Once the password is reset, navigate back to the Sign In screen (signIn1 activity)
-                Intent intent = new Intent(forgot_password.this, SignIn1.class); // replace SignInActivity with the correct class name
-                startActivity(intent);
+                // Make the API call
+                apiService.resetPassword(request).enqueue(new Callback<ForgotPasswordResponse>() {
+                    @Override
+                    public void onResponse(Call<ForgotPasswordResponse> call, Response<ForgotPasswordResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            ForgotPasswordResponse apiResponse = response.body();
 
-                // Optional: Close the ForgotPasswordActivity if you don't want it to stay in the back stack
-                finish();
+                            if ("success".equalsIgnoreCase(apiResponse.getStatus())) {
+                                Toast.makeText(forgot_password.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                // Navigate back to Sign In screen
+                                Intent intent = new Intent(forgot_password.this, SignIn1.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(forgot_password.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(forgot_password.this, "Failed to reset password", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ForgotPasswordResponse> call, Throwable t) {
+                        Toast.makeText(forgot_password.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
+            }
+
     }
-}
+
