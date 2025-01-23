@@ -57,9 +57,9 @@ public class designers_list extends AppCompatActivity {
     }
 
     private void fetchDesigners() {
-        ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
+        ApiService ApiService = RetrofitClient.getClient().create(ApiService.class);
 
-        apiService.getDesigners().enqueue(new Callback<DesignersResponse>() {
+        ApiService.getDesigners().enqueue(new Callback<DesignersResponse>() {
             @Override
             public void onResponse(Call<DesignersResponse> call, Response<DesignersResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {

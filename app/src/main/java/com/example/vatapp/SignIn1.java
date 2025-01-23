@@ -3,50 +3,46 @@ package com.example.vatapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.vatapp.api.ApiService;
-import com.example.vatapp.api.RetrofitClient;
-import com.example.vatapp.response.LoginRequest;
-import com.example.vatapp.response.LoginResponse;
+import com.example.vatapp.dash_designer;
+import com.example.vatapp.dash_user;
+import com.example.vatapp.forgot_password;
+import com.example.vatapp.signup;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class SignIn1 extends AppCompatActivity {
 
-    private Spinner userTypeSpinner;
+    private EditText editTextPhoneNumber, editTextPassword;
     private Button loginButton;
-    private TextView signUpText, forgetPasswordText;
-    private EditText userIdInput, passwordInput;
-    private String selectedUserType;
+    private TextView signUpNowText, forgetPasswordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_2);
 
-        // Initialize views
-        userTypeSpinner = findViewById(R.id.spinner);
+        // Initialize UI elements
+        editTextPhoneNumber = findViewById(R.id.editTextText);
+        editTextPassword = findViewById(R.id.editTextText3);
         loginButton = findViewById(R.id.button4);
-        signUpText = findViewById(R.id.textView3);
+        signUpNowText = findViewById(R.id.textView3);
         forgetPasswordText = findViewById(R.id.forgetPasswordtext);
-        userIdInput = findViewById(R.id.editTextText);
-        passwordInput = findViewById(R.id.editTextText3);
 
-        // Setup spinner
-        setupSpinner();
-
-        // Set login button click listener
+        // Set up login button click listener
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,122 +50,100 @@ public class SignIn1 extends AppCompatActivity {
             }
         });
 
-        // Set sign up text click listener
-        signUpText.setOnClickListener(new View.OnClickListener() {
+        // Set up sign-up text click listener
+        signUpNowText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToSignUp();
+                Intent intent = new Intent(SignIn1.this, signup.class);
+                startActivity(intent);
             }
         });
 
-        // Set forget password click listener
+        // Set up forget password text click listener
         forgetPasswordText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToForgetPassword();
+                Intent intent = new Intent(SignIn1.this, forgot_password.class);
+                startActivity(intent);
             }
         });
     }
 
-    /**
-     * Setup spinner with "User" and "Designer" options.
-     */
-    private void setupSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.user_types,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        userTypeSpinner.setAdapter(adapter);
-
-        userTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedUserType = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                selectedUserType = null;
-            }
-        });
-    }
-
-    /**
-     * Handle login button click.
-     */
     private void handleLogin() {
-        String userId = userIdInput.getText().toString().trim();
-        String password = passwordInput.getText().toString().trim();
+        String phoneNumber = editTextPhoneNumber.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
 
-        if (userId.isEmpty() || password.isEmpty() || selectedUserType == null) {
-            Toast.makeText(this, "Please fill in all fields and select a user type.", Toast.LENGTH_SHORT).show();
+        if (phoneNumber.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Call the SignIn1 method for API login
-        signInApi(userId, password);
-    }
+        // Create a new thread for network operations
+        new Thread(() -> {
+            try {
+                // URL of the PHP script
+                URL url = new URL("http://localhost/vat_app/logIn.php");
 
-    /**
-     * API login method to authenticate the user.
-     */
-    private void signInApi(String userId, String password) {
-        ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
-        LoginRequest request = new LoginRequest(userId, password);
-        Call<LoginResponse> call = apiService.loginUser(request);
+                // Create HTTP connection
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setDoOutput(true);
 
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    String status = response.body().getStatus();
-                    String message = response.body().getMessage();
-                    String userId = response.body().getUserId();
-                    String role = response.body().getRole();
+                // JSON data to send
+                JSONObject postData = new JSONObject();
+                postData.put("phone", phoneNumber);
+                postData.put("password", password);
 
-                    if ("success".equals(status)) {
-                        Toast.makeText(SignIn1.this, "Login Successful! Role: " + role, Toast.LENGTH_SHORT).show();
-
-                        // Navigate based on role or user type
-                        if ("user".equalsIgnoreCase(role)) {
-                            navigateToUserDashboard();
-                        } else if ("designer".equalsIgnoreCase(role)) {
-                            navigateToDesignerDashboard();
-                        }
-                    } else {
-                        Toast.makeText(SignIn1.this, message, Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(SignIn1.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
+                // Write JSON to the request body
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = postData.toString().getBytes("utf-8");
+                    os.write(input, 0, input.length);
                 }
+
+                // Read the response
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line.trim());
+                }
+
+                // Parse the response
+                JSONObject responseJson = new JSONObject(response.toString());
+                runOnUiThread(() -> {
+                    try {
+                        if ("success".equals(responseJson.getString("status"))) {
+                            String role = responseJson.getString("role");
+
+                            // Redirect to the appropriate dashboard
+                            Intent intent;
+                            if ("designer".equals(role)) {
+                                intent = new Intent(SignIn1.this, dash_designer.class);
+                            } else {
+                                intent = new Intent(SignIn1.this, dash_user.class);
+                            }
+                            startActivity(intent);
+                            Toast.makeText(SignIn1.this, "Login successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(SignIn1.this, responseJson.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(SignIn1.this, "Error parsing response", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // Close resources
+                reader.close();
+                connection.disconnect();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                runOnUiThread(() -> Toast.makeText(SignIn1.this, "Network error", Toast.LENGTH_SHORT).show());
             }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(SignIn1.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }).start();
     }
 
-        private void navigateToUserDashboard() {
-        Intent intent = new Intent(SignIn1.this, dash_user.class);
-        startActivity(intent);
-    }
-
-    private void navigateToDesignerDashboard() {
-        Intent intent = new Intent(SignIn1.this, dash_designer.class);
-        startActivity(intent);
-    }
-
-    private void navigateToSignUp() {
-        Intent intent = new Intent(SignIn1.this, signup.class);
-        startActivity(intent);
-    }
-
-    private void navigateToForgetPassword() {
-        Intent intent = new Intent(SignIn1.this, forgot_password.class);
-        startActivity(intent);
-    }
 }

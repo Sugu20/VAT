@@ -48,7 +48,7 @@ public class forgot_password extends AppCompatActivity {
 
                 // Prepare the API request
                 ForgotPasswordRequest request = new ForgotPasswordRequest(email, newPassword);
-                ApiService apiService = RetrofitClient.getInstance().create(ApiService.class);
+                ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
 
                 // Make the API call
                 apiService.resetPassword(request).enqueue(new Callback<ForgotPasswordResponse>() {

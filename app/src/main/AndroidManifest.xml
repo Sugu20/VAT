@@ -18,13 +18,15 @@
         android:theme="@style/Theme.VATAPP"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".DesignsFeedback"
             android:exported="false" />
         <activity
             android:name=".RequestNewDesign"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".DesignDescription"
             android:exported="false" />
@@ -34,9 +36,9 @@
         <activity
             android:name=".UserProfile"
             android:exported="false" />
-        <activity android:name=".UserDesignStatus"
-            android:exported="false"/>
-
+        <activity
+            android:name=".UserDesignStatus"
+            android:exported="false" />
         <activity
             android:name=".DesignRequestList"
             android:exported="false" />
@@ -55,7 +57,6 @@
         <activity
             android:name=".DesignersPrevious2"
             android:exported="false" />
-
         <activity
             android:name=".dash_user"
             android:exported="false" />

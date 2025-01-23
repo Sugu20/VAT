@@ -3,26 +3,39 @@ package com.example.vatapp.response;
 public class LoginResponse {
     private String status;
     private String message;
-    private String user_id; // Add user_id
-    private String role;    // Add role
+    private String phone_number;
+    private String role;
 
-    // Getter for status
+    // Getters and Setters
     public String getStatus() {
         return status;
     }
 
-    // Getter for message
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getMessage() {
         return message;
     }
 
-    // Getter for user_id
-    public String getUserId() {
-        return user_id;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    // Getter for role
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
     public String getRole() {
         return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

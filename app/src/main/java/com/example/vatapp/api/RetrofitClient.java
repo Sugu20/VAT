@@ -4,16 +4,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static Retrofit retrofit;
-    private static final String BASE_URL = "https://5g56w5fj-80.inc1.devtunnels.ms/"; // Replace with your actual base URL
+    private static Retrofit retrofit = null;
 
-    public static Retrofit getInstance() {
+    public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl("https://5g56w5fj-80.inc1.devtunnels.ms/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
 }
+

@@ -3,103 +3,122 @@ package com.example.vatapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
+import com.example.vatapp.response.ProfileData;
 
-public class  UserProfile extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    private TextView userId, dateOfCreation, accountDetails;
-    private EditText nameField, phoneField, emailField;
-    private AppCompatButton editProfileButton, logoutButton;
-    private ConstraintLayout homeButton;
+public class UserProfile extends AppCompatActivity {
+
+    private TextView nameField, emailField, phoneNumberField, userIdField, dateOfCreationField;
+    private Button editProfileButton, logoutButton;
+    private ImageButton homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_user_profile);  // The layout you provided
 
-        // Initialize views
-        userId = findViewById(R.id.userid);
-        dateOfCreation = findViewById(R.id.dateofcreation);
-        accountDetails = findViewById(R.id.accountdetails);
-        TextView nameField = findViewById(R.id.editTextText8);
-        TextView phoneField = findViewById(R.id.phonenumber);
-        TextView emailField = findViewById(R.id.editTextTextEmailAddress);
+        // Initialize the views
+        nameField = findViewById(R.id.editTextText8);
+        emailField = findViewById(R.id.editTextTextEmailAddress);
+        phoneNumberField = findViewById(R.id.phonenumber);
+        userIdField = findViewById(R.id.userid);
+        dateOfCreationField = findViewById(R.id.dateofcreation);
+
         editProfileButton = findViewById(R.id.button10);
         logoutButton = findViewById(R.id.button8);
-        FrameLayout homeButton = findViewById(R.id.homebutton);
+        homeButton = findViewById(R.id.imageView22);
 
-        // Load user details
-        loadUserDetails();
+        // Fetch user data from backend or session
+        fetchUserData();
 
-        // Home button listener
-        homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfile.this, dash_user.class);
-            startActivity(intent);
-            finish();
+        // Set up button click listeners
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfile.this, EditProfileActivity.class);
+                intent.putExtra("name", nameField.getText().toString());
+                intent.putExtra("email", emailField.getText().toString());
+                startActivityForResult(intent, 100); // Request code 100 for editing profile
+            }
         });
 
-        // Logout button listener
-        logoutButton.setOnClickListener(v -> {
-            Intent intent = new Intent(UserProfile.this, SignIn.class);
-            startActivity(intent);
-            finish();
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Log out the user and go back to sign in screen
+                Intent intent = new Intent(UserProfile.this, SignIn.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
         });
 
-        // Edit profile button listener
-        editProfileButton.setOnClickListener(v -> {
-            nameField.setEnabled(true);
-            phoneField.setEnabled(true);
-            emailField.setEnabled(false); // Email remains uneditable
-
-            // Save changes when user clicks edit again
-            if (editProfileButton.getText().toString().equals("Save Changes")) {
-                saveUserDetails();
-                nameField.setEnabled(false);
-                phoneField.setEnabled(false);
-                editProfileButton.setText("Edit Profile");
-            } else {
-                editProfileButton.setText("Save Changes");
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to home/dashboard screen
+                Intent intent = new Intent(UserProfile.this, dash_user.class);
+                startActivity(intent);
             }
         });
     }
 
-    private void loadUserDetails() {
-        // Mock data, replace this with actual data retrieval
-        userId.setText("User ID: 123456");
-        dateOfCreation.setText("Date Created: 2023-01-01");
-        accountDetails.setText("Account Details:");
+    private void fetchUserData() {
+        String userId = "12345"; // This should be fetched dynamically from session or logged-in user data
 
-//        nameField.setText("John Doe");
-//        phoneField.setText("9876543210");
-//        emailField.setText("john.doe@example.com");
+        // Assuming ApiService and Retrofit are set up to fetch user data
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<ProfileData> call = apiService.fetchUserData(userId);
 
-        // Disable fields initially
-//        nameField.setEnabled(false);
-//        phoneField.setEnabled(false);
-//        emailField.setEnabled(false);
+        call.enqueue(new Callback<ProfileData>() {
+            @Override
+            public void onResponse(Call<ProfileData> call, Response<ProfileData> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ProfileData user = response.body();
+                    // Set user data into the respective fields
+                    userIdField.setText("User ID: " + user.getUser_id());
+                    dateOfCreationField.setText("Date of Creation: " + user.getDate_of_creation());
+                    phoneNumberField.setText("Phone Number: " + user.getPhone_number());
+                    nameField.setText(user.getName());
+                    emailField.setText(user.getEmail());
+                } else {
+                    // Handle error if user data is not available or API response is not successful
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileData> call, Throwable t) {
+                // Handle failure (e.g., network issues)
+            }
+        });
     }
 
-    private void saveUserDetails() {
-        // Save changes locally or to the database
-        String updatedName = nameField.getText().toString();
-        String updatedPhone = phoneField.getText().toString();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        // Update logic here (e.g., send to database or shared preferences)
-        // ...
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+            // Get updated profile data and set it in the fields
+            String updatedName = data.getStringExtra("updatedName");
+            String updatedEmail = data.getStringExtra("updatedEmail");
 
-        // Feedback for the user (optional)
-        showMessage("Profile updated successfully!");
-    }
-
-    private void showMessage(String message) {
-        // Display a short feedback message
-        android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show();
+            if (updatedName != null) {
+                nameField.setText(updatedName);
+            }
+            if (updatedEmail != null) {
+                emailField.setText(updatedEmail);
+            }
+        }
     }
 }
