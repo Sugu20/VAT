@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -32,19 +34,19 @@
             android:exported="false" />
         <activity
             android:name=".UserDesignDetail"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UserProfile"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UserDesignStatus"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".DesignRequestList"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".forgot_password"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".designers_list"
             android:exported="true" />
@@ -53,31 +55,31 @@
             android:exported="true" />
         <activity
             android:name=".designers_previous"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".DesignersPrevious2"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".dash_user"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".dash_bg_image"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".dash_designer"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".signup2"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".signup"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SignIn1"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SignIn"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

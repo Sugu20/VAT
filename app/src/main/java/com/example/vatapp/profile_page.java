@@ -1,6 +1,7 @@
 package com.example.vatapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -82,7 +83,8 @@ public class profile_page extends AppCompatActivity {
     }
 
     private void fetchUserData() {
-        String userId = "12345"; // This should come from your session or logged-in user data
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("user_id", null);
 
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
         Call<ProfileData> call = apiService.fetchUserData(userId);
@@ -92,11 +94,11 @@ public class profile_page extends AppCompatActivity {
             public void onResponse(Call<ProfileData> call, Response<ProfileData> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ProfileData user = response.body();
-                    userIdField.setText("User ID: " + user.getUser_id());
-                    dateOfCreationField.setText("Date of Creation: " + user.getDate_of_creation());
-                    phoneField.setText(user.getPhone_number());
-                    nameField.setText(user.getName());
-                    emailField.setText(user.getEmail());
+                    userIdField.setText("User ID : " + user.getUser_id());
+                    dateOfCreationField.setText("Date of Creation : " + user.getDate_of_creation());
+                    phoneField.setText("Phone Number : "+user.getPhone_number());
+                    nameField.setText("Name : "+user.getName());
+                    emailField.setText("Gmail : "+user.getEmail());
                 } else {
                     // Handle error
                     Toast.makeText(profile_page.this, "Failed to load user data", Toast.LENGTH_SHORT).show();

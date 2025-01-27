@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Light"
-        app:srcCompat="@drawable/light3" />
+        app:srcCompat="@drawable/light5" />
     <LinearLayout
         android:id="@+id/txtLay"
         android:layout_width="wrap_content"
@@ -74,15 +74,15 @@
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
+        android:layout_height="315dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@null"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView29"
-        app:srcCompat="@drawable/perspectivegrid" />
+        app:srcCompat="@drawable/perspectivegrid1" />
 
     <TextView
         android:id="@+id/textView29"

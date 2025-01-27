@@ -10,14 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vatapp.response.RequestpendingResponse;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PendingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PendingFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -28,7 +26,7 @@ public class PendingFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private PendingAdapter pendingAdapter;
-    private List<String> pendingItems; // Placeholder for your actual data type
+    private List<RequestpendingResponse.Request> pendingItems; // Placeholder for your actual data type
 
     public PendingFragment() {
         // Required empty public constructor
@@ -73,9 +71,8 @@ public class PendingFragment extends Fragment {
 
     private void loadPendingItems() {
         // Load or fetch data for the pending items list
-        pendingItems.add("Item 1");
-        pendingItems.add("Item 2");
-        pendingItems.add("Item 3");
+        pendingItems.add(new RequestpendingResponse.Request());
+
         // Add more items or fetch from database/API
     }
 }

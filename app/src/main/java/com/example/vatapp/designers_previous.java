@@ -1,6 +1,7 @@
-package com.example.vatapp ; // Replace with your package name
+package com.example.vatapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,16 +12,22 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vatapp.ImageGridAdapter;
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
 import com.example.vatapp.dash_designer;
-import com.example.vatapp.designers_list;
+import com.example.vatapp.response.DesignResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class designers_previous extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private com.example.vatapp.ImageGridAdapter  adapter;
+    private com.example.vatapp.ImageGridAdapter adapter;
     private List<String> imageList;
     private ImageButton homeButton;
 
@@ -38,7 +45,7 @@ public class designers_previous extends AppCompatActivity {
         adapter = new ImageGridAdapter(imageList, this);
         recyclerView.setAdapter(adapter);
 
-        // Fetch images (dummy data for now)
+        // Fetch images
         fetchImages();
 
         // Home button click event
@@ -63,18 +70,45 @@ public class designers_previous extends AppCompatActivity {
     }
 
     private void fetchImages() {
-        // TODO: Replace with API integration to fetch uploaded images
-        // Dummy data (URLs or paths of images)
-        imageList.add("https://example.com/image1.jpg");
-        imageList.add("https://example.com/image2.jpg");
-        imageList.add("https://example.com/image3.jpg");
-        imageList.add("https://example.com/image4.jpg");
-        imageList.add("https://example.com/image5.jpg");
+        // Retrieve user_id (as a String from SharedPreferences)
+        String userId = getUserId();
 
-        // Notify adapter about data changes
-        adapter.notifyDataSetChanged();
+        if (userId == null) {
+            Toast.makeText(this, "User ID not found. Please log in again.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        // Toast for debugging
-        Toast.makeText(this, "Fetched " + imageList.size() + " images", Toast.LENGTH_SHORT).show();
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+
+        // Pass the user_id as a query parameter
+        apiService.getDesigns(Integer.parseInt(userId)).enqueue(new Callback<DesignResponse>() {
+            @Override
+            public void onResponse(Call<DesignResponse> call, Response<DesignResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
+                    List<DesignResponse.Design> designs = response.body().getDesigns();
+
+                    // Update the imageList with URLs from the API
+                    imageList.clear();
+                    for (DesignResponse.Design design : designs) {
+                        imageList.add(design.getFile_path());
+                    }
+
+                    // Notify adapter about data changes
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(designers_previous.this, "Failed to fetch designs", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DesignResponse> call, Throwable t) {
+                Toast.makeText(designers_previous.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private String getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", null);  // Default value is null if the user ID is not found
     }
 }

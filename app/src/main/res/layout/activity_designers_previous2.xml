@@ -53,7 +53,7 @@
         android:layout_marginHorizontal="120dp"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@id/designImageView"
         android:text="View in AR"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="376dp" />
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="Feedbacks"
         android:textColor="#FEFACA"
-        android:textSize="19dp"
+        android:textSize="19sp"
         android:fontFamily="@font/inter_bold"
        app:layout_constraintTop_toBottomOf="@id/button6"
         android:layout_marginTop="20dp"
@@ -85,15 +85,15 @@
         tools:layout_editor_absoluteX="20dp" />
 
     <ImageView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/designImageView"
         android:layout_width="match_parent"
-        android:layout_height="207dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_height="300dp"
+        android:layout_margin="16dp"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@id/textView20"
         app:layout_constraintStart_toStartOf="@id/imageView10"
         app:layout_constraintEnd_toEndOf="@id/imageView10"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="0dp" />
+         />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -101,17 +101,17 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:background="@drawable/rectangle_801"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
     <FrameLayout
-        android:id="@+id/homebutton2"
+        android:id="@+id/homebutton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/recyclerView3"
         app:layout_constraintStart_toStartOf="@id/imageView10"
         app:layout_constraintEnd_toEndOf="@id/imageView10"
@@ -131,10 +131,10 @@
         android:id="@+id/backButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="20dp"
         android:background="@null"
         android:contentDescription="Back"
-        app:layout_constraintEnd_toStartOf="@id/homebutton2"
+        app:layout_constraintEnd_toStartOf="@id/homebutton"
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerView3"

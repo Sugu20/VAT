@@ -1,5 +1,7 @@
 package com.example.vatapp;
 
+import static com.example.vatapp.api.RetrofitClient.Base_url;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -30,8 +34,11 @@ public class DesignerImagesAdapter extends RecyclerView.Adapter<DesignerImagesAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int imageResId = imageList.get(position);
-        holder.imageView.setImageResource(imageResId); // Set the image
+        String imageUrl = String.valueOf(imageList.get(position));
+        Glide.with(context)
+                .load(Base_url+imageUrl)
+                .placeholder(R.drawable.placeholder) // Add a placeholder drawable
+                .into(holder.imageView);
     }
 
     @Override

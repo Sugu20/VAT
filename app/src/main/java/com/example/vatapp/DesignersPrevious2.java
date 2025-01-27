@@ -1,72 +1,84 @@
 package com.example.vatapp;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class DesignersPrevious2 extends AppCompatActivity {
 
+    private ImageView designImageView;
+    private AppCompatButton viewInARButton;
+    private ImageButton homeButton, backButton;
     private RecyclerView feedbackRecyclerView;
-    private FeedbackAdapter feedbackAdapter;
-    private List<String> feedbackList;
-    private ImageButton homeButton;
+    private TextView feedbackTextView;
+    private String previousActivity;  // To track the previous activity for back navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_designers_previous2);
 
-        // Initialize RecyclerView
+        // Initialize views
+        designImageView = findViewById(R.id.designImageView);
+        viewInARButton = findViewById(R.id.button6);
+        FrameLayout homeButton = findViewById(R.id.homebutton);
+        backButton = findViewById(R.id.backButton);
         feedbackRecyclerView = findViewById(R.id.recyclerView3);
-        feedbackRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        feedbackTextView = findViewById(R.id.textView32);
 
-        // Load feedback data
-        feedbackList = new ArrayList<>();
-        loadFeedbackData();
+        // Set the design image (from your image selection or backend data)
+        // designImageView.setImageURI(imageUri);  // Example: load image from URI
 
-        // Set adapter
-        feedbackAdapter = new FeedbackAdapter(feedbackList);
-        feedbackRecyclerView.setAdapter(feedbackAdapter);
+        // Handle "View in AR" button click
+        viewInARButton.setOnClickListener(v -> openCameraForAR());
 
-        // Initialize buttons
-        homeButton = findViewById(R.id.homebutton2);
-        ImageButton backButton = findViewById(R.id.backButton);
+        // Handle "Home" button click (navigate to dash_designer)
+        homeButton.setOnClickListener(v -> navigateToDashDesigner());
 
-        // Home button click listener
-        homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(DesignersPrevious2.this, dash_designer.class);
-            startActivity(intent);
-            finish(); // Close current activity
-        });
-
-        // Back button click listener
+        // Handle "Back" button click based on previous activity
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(DesignersPrevious2.this, designers_previous.class);
-            startActivity(intent);
-            finish(); // Close current activity
+            if ("dash_user".equals(previousActivity)) {
+                navigateToDashUser();
+            } else {
+                navigateToPreviousDesigner();
+            }
         });
 
-        // View in AR button - leave empty
-        findViewById(R.id.button6).setOnClickListener(v -> {
-            Toast.makeText(this, "View in AR feature is under development.", Toast.LENGTH_SHORT).show();
-        });
+        // You may want to set the previous activity identifier based on how the user navigated here
+        previousActivity = getIntent().getStringExtra("previous_activity");
     }
 
-    private void loadFeedbackData() {
-        // Dummy data for feedbacks
-        feedbackList.add("Great design!");
-        feedbackList.add("Love the colors!");
-        feedbackList.add("Can you make the edges smoother?");
-        feedbackList.add("Perfect for our project!");
-        feedbackList.add("Looking forward to more designs like this.");
+    // Method to open the camera for AR viewing
+    private void openCameraForAR() {
+        // Implement logic to open camera and AR functionality
+        // For example, starting an AR camera activity
+        Intent intent = new Intent(this, com.example.vatapp.ImageView.class);
+        startActivity(intent);
+    }
 
-        // Replace with real data from your database or API if needed
+    // Method to navigate to dash_designer
+    private void navigateToDashDesigner() {
+        Intent intent = new Intent(this, dash_designer.class);
+        startActivity(intent);
+    }
+
+    // Method to navigate to dash_user
+    private void navigateToDashUser() {
+        Intent intent = new Intent(this, dash_user.class);
+        startActivity(intent);
+    }
+
+    // Method to navigate back to the previous designer list
+    private void navigateToPreviousDesigner() {
+        Intent intent = new Intent(this, designers_previous.class);
+        startActivity(intent);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.vatapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -75,7 +76,9 @@ public class UserProfile extends AppCompatActivity {
     }
 
     private void fetchUserData() {
-        String userId = "12345"; // This should be fetched dynamically from session or logged-in user data
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("user_id", null);
+
 
         // Assuming ApiService and Retrofit are set up to fetch user data
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
@@ -87,11 +90,11 @@ public class UserProfile extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     ProfileData user = response.body();
                     // Set user data into the respective fields
-                    userIdField.setText("User ID: " + user.getUser_id());
-                    dateOfCreationField.setText("Date of Creation: " + user.getDate_of_creation());
-                    phoneNumberField.setText("Phone Number: " + user.getPhone_number());
-                    nameField.setText(user.getName());
-                    emailField.setText(user.getEmail());
+                    userIdField.setText("User ID : " + user.getUser_id());
+                    dateOfCreationField.setText("Date of Creation : " + user.getDate_of_creation());
+                    phoneNumberField.setText("Phone Number : " + user.getPhone_number());
+                    nameField.setText("Name : "+user.getName());
+                    emailField.setText("Gmail : "+user.getEmail());
                 } else {
                     // Handle error if user data is not available or API response is not successful
                 }

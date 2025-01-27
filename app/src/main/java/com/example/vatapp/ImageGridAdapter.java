@@ -1,5 +1,8 @@
 package com.example.vatapp;
 
+import static com.example.vatapp.api.RetrofitClient.Base_url;
+import static com.example.vatapp.api.RetrofitClient.Image_base_url;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,10 +45,10 @@ public class ImageGridAdapter extends RecyclerView.Adapter<ImageGridAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String imageUrl = imageList.get(position);
-
+        String Connect = Image_base_url+imageUrl;
         // Use Glide to load the image
         Glide.with(context)
-                .load(imageUrl)
+                .load(Connect)
                 .placeholder(R.drawable.icon_box) // Add a placeholder drawable
                 .into(holder.imageView);
     }
