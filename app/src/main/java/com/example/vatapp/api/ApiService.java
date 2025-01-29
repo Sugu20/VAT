@@ -67,6 +67,13 @@ public interface ApiService {
             @Part MultipartBody.Part file,
             @Part("user_id") RequestBody userId
     );
+    @Multipart
+    @POST("design_request.php")
+    Call<ResponseBody> requestNewDesign(
+            @Part("user_id") RequestBody userId,
+            @Part("description") RequestBody description,
+            @Part MultipartBody.Part sample_image
+    );
 
 
 }

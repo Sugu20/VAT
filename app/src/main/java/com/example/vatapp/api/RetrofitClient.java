@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 public class RetrofitClient {
     private static Retrofit retrofit = null;
-    public static final String Image_base_url = "https://5g56w5fj-80.inc1.devtunnels.ms/VAT_APP/";
-    public static final String Base_url = "https://5g56w5fj-80.inc1.devtunnels.ms/";
+    public static final String Image_base_url = "https://53e3-2401-4900-1cc9-e4d6-dc0d-3e8-11fa-3857.ngrok-free.app/VAT_APP/";
+    public static final String Base_url = "https://53e3-2401-4900-1cc9-e4d6-dc0d-3e8-11fa-3857.ngrok-free.app";
     public static Retrofit getClient() {
         if (retrofit == null) {
             // Create an instance of the logging interceptor
