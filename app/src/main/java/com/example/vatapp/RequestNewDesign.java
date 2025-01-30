@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class RequestNewDesign extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageView imageUploaded;
-    private Button uploadButton, sendButton;
+    private AppCompatButton uploadButton, sendButton;
     private EditText descriptionInput;
     private TextView textPrompt, textPrompt2, requestNewDesign;
     private ImageButton homeButton;
@@ -42,19 +42,9 @@ public class RequestNewDesign extends AppCompatActivity {
         requestNewDesign = findViewById(R.id.text25);
         homeButton = findViewById(R.id.homebutton1);
 
-        uploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
+        uploadButton.setOnClickListener(v -> openGallery());
 
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitDesignRequest();
-            }
-        });
+        sendButton.setOnClickListener(v -> submitDesignRequest());
     }
 
     private void openGallery() {

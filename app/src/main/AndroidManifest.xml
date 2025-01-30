@@ -4,9 +4,8 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -21,14 +20,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".FeedBackDescription"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".RequestNewDesign"
             android:exported="false" />
-        <activity android:name=".DesignsFeedback"
-            android:exported="true"/>
-
+        <activity
+            android:name=".DesignsFeedback"
+            android:exported="true" />
         <activity
             android:name=".DesignDescription"
             android:exported="false" />

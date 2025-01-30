@@ -1,14 +1,31 @@
 package com.example.vatapp;
 
-public class DesignersFeedback {
-    private String feedBackTextView1;
-    private String userNameTextView1;
+import com.example.vatapp.api.RetrofitClient;
 
-    public String getFeedbackText() {
-        return feedBackTextView1;
+public class DesignersFeedback {
+    private String userName;
+    private String feedbackText;
+    private String filePath; // Use 'filePath' instead of 'imageUrl'
+
+    public DesignersFeedback(String userName, String feedbackText, String filePath) {
+        this.userName = userName;
+        this.feedbackText = feedbackText;
+        this.filePath = filePath;
     }
 
     public String getUserName() {
-        return userNameTextView1;
+        return userName;
+    }
+
+    public String getFeedbackText() {
+        return feedbackText;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public String getFullImageUrl() {
+        return RetrofitClient.Image_base_url + filePath; // Construct full image URL
     }
 }

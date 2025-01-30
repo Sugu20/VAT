@@ -111,6 +111,7 @@
         app:layout_constraintEnd_toEndOf="@id/imageView5"
         android:layout_marginTop="40dp"
         android:visibility="visible"
+        android:gravity="top|start"
         android:layout_marginHorizontal="30dp"
         android:background="@drawable/rectangle_84"
          />
@@ -171,7 +172,7 @@
         android:text="Go Back to see your status of your Design!"
         android:textColor="@color/white"
         android:fontFamily="@font/inter_light"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:layout_marginTop="10dp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/imageView5"

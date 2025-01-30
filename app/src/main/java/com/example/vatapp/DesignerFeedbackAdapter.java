@@ -1,9 +1,11 @@
 package com.example.vatapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +33,17 @@ public class DesignerFeedbackAdapter extends RecyclerView.Adapter<DesignerFeedba
         DesignersFeedback feedback = feedbackList.get(position);
         holder.textFeedback.setText(feedback.getFeedbackText());
         holder.textDesignerName.setText(feedback.getUserName());
+
+        // Handle "Details" button click
+        holder.detailsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, FeedBackDescription.class);
+            intent.putExtra("feedback_text", feedback.getFeedbackText());
+            intent.putExtra("user_name", feedback.getUserName());
+            intent.putExtra("image_url", feedback.getFullImageUrl()); // Pass full URL
+            context.startActivity(intent);
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -40,11 +52,13 @@ public class DesignerFeedbackAdapter extends RecyclerView.Adapter<DesignerFeedba
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textFeedback, textDesignerName;
+        Button detailsButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textFeedback = itemView.findViewById(R.id.feedbackTextView1);
             textDesignerName = itemView.findViewById(R.id.userNameTextView1);
+            detailsButton = itemView.findViewById(R.id.detailsButton); // Fixed reference
         }
     }
 }
