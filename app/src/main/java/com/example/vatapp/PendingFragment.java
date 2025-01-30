@@ -1,78 +1,83 @@
 package com.example.vatapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
 import com.example.vatapp.response.RequestpendingResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PendingFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     private RecyclerView recyclerView;
     private PendingAdapter pendingAdapter;
-    private List<RequestpendingResponse.Request> pendingItems; // Placeholder for your actual data type
+    private List<RequestpendingResponse.Request> pendingItems = new ArrayList<>();
 
     public PendingFragment() {
         // Required empty public constructor
     }
 
-    public static PendingFragment newInstance(String param1, String param2) {
-        PendingFragment fragment = new PendingFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pending, container, false);
 
-        // Initialize RecyclerView
-        recyclerView = view.findViewById(R.id.Pending); // Ensure the RecyclerView has an ID in your XML
+        recyclerView = view.findViewById(R.id.Pending);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Initialize data and adapter
-        pendingItems = new ArrayList<>();
-        loadPendingItems(); // Load the data
-        pendingAdapter = new PendingAdapter(pendingItems);
+        pendingAdapter = new PendingAdapter(pendingItems, getContext(), this::onDetailsClick);
         recyclerView.setAdapter(pendingAdapter);
+
+        fetchPendingRequests(); // Fetch data from API
 
         return view;
     }
 
-    private void loadPendingItems() {
-        // Load or fetch data for the pending items list
-        pendingItems.add(new RequestpendingResponse.Request());
+    private void fetchPendingRequests() {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService.getPendingRequests().enqueue(new Callback<RequestpendingResponse>() {
+            @Override
+            public void onResponse(Call<RequestpendingResponse> call, Response<RequestpendingResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    pendingItems.clear();
+                    pendingItems.addAll(response.body().getRequests());
+                    pendingAdapter.notifyDataSetChanged();
+                }
+            }
 
-        // Add more items or fetch from database/API
+            @Override
+            public void onFailure(Call<RequestpendingResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void onDetailsClick(RequestpendingResponse.Request item) {
+        // Open DesignDescription with data
+        Intent intent = new Intent(getContext(), DesignDescription.class);
+        intent.putExtra("requester_name", item.getRequester_name());
+        intent.putExtra("description", item.getDescription());
+        intent.putExtra("image_url", item.getSample_image());
+        startActivity(intent);
     }
 }

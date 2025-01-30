@@ -3,6 +3,7 @@ package com.example.vatapp.api;
 import com.example.vatapp.response.DesignResponse;
 import com.example.vatapp.response.DesignUploadResponse;
 import com.example.vatapp.response.DesignersResponse;
+import com.example.vatapp.response.FeedbackResponse;
 import com.example.vatapp.response.ForgotPasswordRequest;
 import com.example.vatapp.response.ForgotPasswordResponse;
 import com.example.vatapp.response.LoginRequest;
@@ -10,6 +11,7 @@ import com.example.vatapp.response.LoginResponse;
 import com.example.vatapp.response.ProfileData;
 import com.example.vatapp.response.RegisterRequest;
 import com.example.vatapp.response.RegisterResponse;
+import com.example.vatapp.response.RequestpendingResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -62,20 +64,25 @@ public interface ApiService {
             @Part MultipartBody.Part image
     );
     @Multipart
-    @POST("upload.php")
+    @POST("VAT_APP/upload.php")
     Call<DesignUploadResponse> uploadImage(
             @Part MultipartBody.Part file,
             @Part("user_id") RequestBody userId
     );
     @Multipart
-    @POST("design_request.php")
+    @POST("VAT_APP/design_request.php")
     Call<ResponseBody> requestNewDesign(
             @Part("user_id") RequestBody userId,
             @Part("description") RequestBody description,
             @Part MultipartBody.Part sample_image
     );
-
-
+    @GET("VAT_APP/request_list.php") // Replace with your actual API endpoint
+    Call<RequestpendingResponse> getPendingRequests();
+    @GET("your_php_script.php") // Replace with your actual PHP file name
+    Call<FeedbackResponse> getFeedback(
+            @Query("designer_id") int designerId,
+            @Query("image_id") int imageId
+    );
 }
 
 

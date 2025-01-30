@@ -43,7 +43,7 @@ public class UserFeedBackAdapter extends RecyclerView.Adapter<UserFeedBackAdapte
 
         // Set button click listener
         holder.detailsButton.setOnClickListener(v -> {
-            Toast.makeText(context, "Feedback ID: " + feedback.getId(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Feedback ID: " + feedback.getFeedbackText(), Toast.LENGTH_SHORT).show();
         });
     }
 

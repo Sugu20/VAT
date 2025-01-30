@@ -24,11 +24,11 @@
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".DesignsFeedback"
-            android:exported="false" />
-        <activity
             android:name=".RequestNewDesign"
             android:exported="false" />
+        <activity android:name=".DesignsFeedback"
+            android:exported="true"/>
+
         <activity
             android:name=".DesignDescription"
             android:exported="false" />

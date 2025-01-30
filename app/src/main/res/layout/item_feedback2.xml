@@ -6,7 +6,7 @@
     >
 
     <TextView
-        android:id="@+id/userNameTextView"
+        android:id="@+id/userNameTextView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="User Name :"
@@ -15,7 +15,7 @@
 
 
     <TextView
-        android:id="@+id/feedbackTextView"
+        android:id="@+id/feedbackTextView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Feedback Text"
