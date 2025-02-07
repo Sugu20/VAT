@@ -1,6 +1,7 @@
 package com.example.vatapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vatapp.api.ApiService;
 import com.example.vatapp.api.RetrofitClient;
+import com.example.vatapp.response.FeedbackResponse;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,8 +22,8 @@ public class DesignsFeedback extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DesignerFeedbackAdapter adapter;
-    private List<com.example.vatapp.DesignersFeedback> feedbackList;
-    private ImageButton homeButton; // Added Home Button
+    private List<FeedbackResponse.DesignersFeedback> feedbackList;
+    private ImageButton homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,8 @@ public class DesignsFeedback extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView3);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        homeButton = findViewById(R.id.imageView22); // Reference Home Button
+        homeButton = findViewById(R.id.imageView22);
 
-        // Home button click listener
         homeButton.setOnClickListener(v -> {
             Intent intent = new Intent(DesignsFeedback.this, dash_designer.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -40,25 +42,25 @@ public class DesignsFeedback extends AppCompatActivity {
             finish();
         });
 
-        // Replace with actual designer_id and image_id
-        int designerId = 1;
-        int imageId = 101;
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("user_id", null);
 
-        fetchFeedback(designerId, imageId);
+        fetchFeedback(Integer.parseInt(userId));
     }
 
-    private void fetchFeedback(int designerId, int imageId) {
+    private void fetchFeedback(int designerId) {
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<com.example.vatapp.response.FeedbackResponse> call = apiService.getFeedback(designerId, imageId);
+        Call<FeedbackResponse> call = apiService.getFeedback(designerId);
 
-        call.enqueue(new Callback<com.example.vatapp.response.FeedbackResponse>() {
+        call.enqueue(new Callback<FeedbackResponse>() {
             @Override
-            public void onResponse(Call<com.example.vatapp.response.FeedbackResponse> call, Response<com.example.vatapp.response.FeedbackResponse> response) {
+            public void onResponse(Call<FeedbackResponse> call, Response<FeedbackResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    if (response.body().isSuccess()) {
+                    if (response.body().isSuccess() && response.body().getFeedbacks() != null) {
                         feedbackList = response.body().getFeedbacks();
                         adapter = new DesignerFeedbackAdapter(DesignsFeedback.this, feedbackList);
                         recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(DesignsFeedback.this, "No feedback found.", Toast.LENGTH_SHORT).show();
                     }
@@ -68,10 +70,12 @@ public class DesignsFeedback extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<com.example.vatapp.response.FeedbackResponse> call, Throwable t) {
+            public void onFailure(Call<FeedbackResponse> call, Throwable t) {
                 Toast.makeText(DesignsFeedback.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("API_ERROR", t.getMessage());
             }
         });
     }
 }
+
+
+

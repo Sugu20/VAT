@@ -1,12 +1,9 @@
 package com.example.vatapp;
 
-
 import static com.example.vatapp.api.RetrofitClient.Image_base_url;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +13,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.bumptech.glide.Glide;
 
-public class DesignersPrevious2 extends AppCompatActivity {
+public class DesignersUserPrevious2 extends AppCompatActivity {
 
     private ImageView designImageView;
     private AppCompatButton viewInARButton;
@@ -32,22 +29,24 @@ public class DesignersPrevious2 extends AppCompatActivity {
 
         // Initialize views
         designImageView = findViewById(R.id.designImageView);
-        viewInARButton = findViewById(R.id.button6);
-        FrameLayout homeButton = findViewById(R.id.homebutton);
+        viewInARButton = findViewById(R.id.button6);// Fixed the homeButton reference
         backButton = findViewById(R.id.backButton);
         feedbackRecyclerView = findViewById(R.id.recyclerView3);
         feedbackTextView = findViewById(R.id.textView32);
 
-        // Set the design image (from your image selection or backend data)
-        // designImageView.setImageURI(imageUri);  // Example: load image from URI
+
+        Glide.with(this)
+                .load(Image_base_url+getIntent().getStringExtra("imageUrl"))
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into(designImageView);
+        // Get the previous activity identifier
+        previousActivity = getIntent().getStringExtra("previous_activity");
 
         // Handle "View in AR" button click
         viewInARButton.setOnClickListener(v -> openCameraForAR());
 
-        // Handle "Home" button click (navigate to dash_designer)
-        homeButton.setOnClickListener(v -> navigateToDashDesigner());
-
-        // Handle "Back" button click based on previous activity
+        // Handle "Back" button click (Navigate based on previous activity)
         backButton.setOnClickListener(v -> {
             if ("dash_user".equals(previousActivity)) {
                 navigateToDashUser();
@@ -55,40 +54,24 @@ public class DesignersPrevious2 extends AppCompatActivity {
                 navigateToPreviousDesigner();
             }
         });
-
-        Glide.with(this)
-                .load(Image_base_url+getIntent().getStringExtra("imageUrl"))
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.placeholder)
-                .into(designImageView);
-
-        // You may want to set the previous activity identifier based on how the user navigated here
-        previousActivity = getIntent().getStringExtra("previous_activity");
     }
 
     // Method to open the camera for AR viewing
     private void openCameraForAR() {
-        // Implement logic to open camera and AR functionality
-        // For example, starting an AR camera activity
         Intent intent = new Intent(this, com.example.vatapp.ImageView.class);
         startActivity(intent);
     }
-
-    // Method to navigate to dash_designer
-    private void navigateToDashDesigner() {
-        Intent intent = new Intent(this, dash_designer.class);
-        startActivity(intent);
-    }
-
-    // Method to navigate to dash_user
+    // Method to navigate to DashUser
     private void navigateToDashUser() {
         Intent intent = new Intent(this, dash_user.class);
         startActivity(intent);
+        finish(); // Close this activity
     }
 
     // Method to navigate back to the previous designer list
     private void navigateToPreviousDesigner() {
-        Intent intent = new Intent(this, designers_previous.class);
+        Intent intent = new Intent(this, DesginersUserPrevious.class);
         startActivity(intent);
+        finish(); // Close this activity
     }
 }

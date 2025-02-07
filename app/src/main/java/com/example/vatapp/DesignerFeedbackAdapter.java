@@ -1,5 +1,7 @@
 package com.example.vatapp;
 
+import static com.example.vatapp.api.RetrofitClient.Image_base_url;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,14 +11,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.vatapp.response.FeedbackResponse;
+
 import java.util.List;
 
 public class DesignerFeedbackAdapter extends RecyclerView.Adapter<DesignerFeedbackAdapter.ViewHolder> {
 
     private Context context;
-    private List<DesignersFeedback> feedbackList;
+    private List<FeedbackResponse.DesignersFeedback> feedbackList;
 
-    public DesignerFeedbackAdapter(Context context, List<DesignersFeedback> feedbackList) {
+    public DesignerFeedbackAdapter(Context context, List<FeedbackResponse.DesignersFeedback> feedbackList) {
         this.context = context;
         this.feedbackList = feedbackList;
     }
@@ -30,20 +35,21 @@ public class DesignerFeedbackAdapter extends RecyclerView.Adapter<DesignerFeedba
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DesignersFeedback feedback = feedbackList.get(position);
-        holder.textFeedback.setText(feedback.getFeedbackText());
-        holder.textDesignerName.setText(feedback.getUserName());
+        FeedbackResponse.DesignersFeedback feedback = feedbackList.get(position);
+
+        holder.textFeedback.setText(feedback.getUser_name());
+        holder.textDesignerName.setText(feedback.getFeedbackText());
+
 
         // Handle "Details" button click
         holder.detailsButton.setOnClickListener(v -> {
             Intent intent = new Intent(context, FeedBackDescription.class);
             intent.putExtra("feedback_text", feedback.getFeedbackText());
-            intent.putExtra("user_name", feedback.getUserName());
-            intent.putExtra("image_url", feedback.getFullImageUrl()); // Pass full URL
+            intent.putExtra("user_name", feedback.getUser_name());
+            intent.putExtra("image_url", feedback.getFile_path()); // FIXED!
             context.startActivity(intent);
         });
     }
-
 
     @Override
     public int getItemCount() {
@@ -52,13 +58,13 @@ public class DesignerFeedbackAdapter extends RecyclerView.Adapter<DesignerFeedba
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textFeedback, textDesignerName;
-        Button detailsButton;
+        Button detailsButton; // FIXED: Added missing reference
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textFeedback = itemView.findViewById(R.id.feedbackTextView1);
-            textDesignerName = itemView.findViewById(R.id.userNameTextView1);
-            detailsButton = itemView.findViewById(R.id.detailsButton); // Fixed reference
+            textFeedback = itemView.findViewById(R.id.titleTextView);
+            textDesignerName = itemView.findViewById(R.id.descriptionTextView);
+            detailsButton = itemView.findViewById(R.id.goToDetailsButton); // FIXED!
         }
     }
 }

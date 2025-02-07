@@ -1,6 +1,6 @@
 package com.example.vatapp.response;
 
-public class UploadResponse {
+public class UploadRespondse {
 
     private String message; // Assuming the response contains a message
 

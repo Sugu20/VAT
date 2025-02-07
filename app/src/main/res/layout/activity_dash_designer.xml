@@ -6,86 +6,139 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <ImageView
-android:id="@+id/imageView2"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:alpha="0.9"
-android:scaleType="fitXY"
-app:srcCompat="@drawable/bggg" />
+    android:id="@+id/imageView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.9"
+    android:scaleType="fitXY"
+    app:srcCompat="@drawable/bggg" />
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:alpha="0.8"
+        android:background="#004F39"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<TextView
-android:id="@+id/txtNewDesign"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_marginHorizontal="10dp"
-android:layout_marginTop="16dp"
-android:fontFamily="@font/inter_extrabold"
-android:text="Design Request List."
-android:gravity="center"
-android:textAlignment="center"
-android:padding="50dp"
-android:textColor="@color/black"
-android:background="@drawable/edit_text_bg"
-android:textSize="40sp"
-app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/Textchange"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:paddingBottom="35sp"
+        android:alpha="0.9"
+        android:background="@drawable/backgroud"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextSwitcher
+        android:id="@+id/textSwitcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#F9F0C1"
+        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintStart_toStartOf="@id/Textchange"
+        app:layout_constraintEnd_toEndOf="@id/Textchange"
+        app:layout_constraintTop_toTopOf="@id/Textchange"/>
 
     <TextView
-        android:id="@+id/designers_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_bg"
-        android:fontFamily="@font/inter_extrabold"
-        android:gravity="center"
-        android:padding="43dp"
-        android:text="Designer's Previous Upload."
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/Textchange"
+        android:layout_marginEnd="120dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l1" />
+        android:textSize="25sp"/>
 
-    <LinearLayout
-        android:id="@+id/l1"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_img"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="136dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/Textchange" />
+
+
+    <android.widget.HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
         android:layout_width="match_parent"
-        android:layout_height="198dp"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:weightSum="2"
-        app:layout_constraintTop_toBottomOf="@id/txtNewDesign"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        app:layout_constraintTop_toBottomOf="@id/Textchange"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-        <TextView
-            android:id="@+id/textView24"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:fontFamily="@font/inter_bold"
-            android:background="@drawable/edit_text_bg"
-            android:text="Profile."
-            android:layout_weight="1"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/black"
-            android:textSize="40sp" />
 
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:background="@drawable/edit_text_bg"
-            android:fontFamily="@font/inter_bold"
-            android:text="Designs Feedback."
-            android:textColor="@color/black"
-            android:textSize="32sp"/>
+        <!-- LinearLayout to arrange TextViews horizontally -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <!-- TextView: Design Request List -->
+            <TextView
+                android:id="@+id/txtDesignRequestList"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:background="@drawable/fordash"
+                android:fontFamily="@font/inter_black"
+                android:gravity="top|center"
+                android:textAlignment="gravity"
+                android:text="Design Request List."
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:layout_marginHorizontal="60dp"/>
+
+            <!-- TextView: Designer's Previous Upload -->
+            <TextView
+                android:id="@+id/txtDesignersPreviousUpload"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:layout_marginHorizontal="60dp"
+                android:background="@drawable/fordash"
+                android:fontFamily="@font/inter_extrabold"
+                android:gravity="top|center"
+                android:text="Designer's Previous Upload."
+                android:textColor="@color/black"
+                android:textSize="36sp" />
+
+            <!-- TextView: Profile -->
+            <TextView
+                android:id="@+id/txtProfile"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:layout_marginHorizontal="60dp"
+                android:background="@drawable/fordash"
+                android:fontFamily="@font/inter_extrabold"
+                android:gravity="top|center"
+                android:text="Profile."
+                android:textColor="@color/black"
+                android:textSize="32sp" />
+
+            <!-- TextView: Designs Feedback -->
+            <TextView
+                android:id="@+id/txtDesignsFeedback"
+                android:layout_width="300dp"
+                android:layout_height="400dp"
+                android:layout_marginHorizontal="60dp"
+                android:background="@drawable/fordash"
+                android:fontFamily="@font/inter_extrabold"
+                android:gravity="top|center"
+                android:text="Designs Feedback."
+                android:textColor="@color/black"
+                android:textSize="32sp" />
+
+        </LinearLayout>
+    </android.widget.HorizontalScrollView>
+
 
 
 

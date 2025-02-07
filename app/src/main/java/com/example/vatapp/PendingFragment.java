@@ -75,9 +75,10 @@ public class PendingFragment extends Fragment {
     private void onDetailsClick(RequestpendingResponse.Request item) {
         // Open DesignDescription with data
         Intent intent = new Intent(getContext(), DesignDescription.class);
-        intent.putExtra("requester_name", item.getRequester_name());
-        intent.putExtra("description", item.getDescription());
-        intent.putExtra("image_url", item.getSample_image());
+        intent.putExtra("id",""+item.getId());
+        intent.putExtra("requester_name", ""+item.getRequester_name());
+        intent.putExtra("description", ""+item.getDescription());
+        intent.putExtra("image_url", ""+item.getSample_image());
         startActivity(intent);
     }
 }

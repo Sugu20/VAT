@@ -8,5 +8,6 @@
         <item>@font/inter_light</item>
         <item>@font/inter_medium</item>
         <item>@font/londrina_shadow</item>
+        <item>@font/nanum_brush_script</item>
     </array>
 </resources>

@@ -47,8 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
 
             <TextView
@@ -94,6 +93,18 @@
                 android:background="@drawable/rectangle_84"
                 android:gravity="top"
                 android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/requesterName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reqester Name : "
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                />
+
 
 
             <LinearLayout

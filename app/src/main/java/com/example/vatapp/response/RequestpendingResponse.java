@@ -16,10 +16,16 @@ public class RequestpendingResponse {
     }
 
     public static class Request {
+
+        private String id;
         private String requester_id;
         private String requester_name;
         private String sample_image;
         private String description;
+
+        public String getId() {
+            return id;
+        }
 
         public String getRequester_id() {
             return requester_id;

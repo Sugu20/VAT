@@ -13,8 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.vatapp.dash_designer;
-import com.example.vatapp.dash_user;
 
 public class UserDesignDetail extends AppCompatActivity {
 
@@ -31,8 +29,10 @@ public class UserDesignDetail extends AppCompatActivity {
         EditText rejectionNotes = findViewById(R.id.multiLineText1);
         androidx.appcompat.widget.AppCompatButton viewInARButton = findViewById(R.id.button7);
         androidx.appcompat.widget.AppCompatButton submitButton = findViewById(R.id.submitButton);
+        androidx.appcompat.widget.AppCompatButton acceptButton = findViewById(R.id.acceptButton1);
+        androidx.appcompat.widget.AppCompatButton rejectButton = findViewById(R.id.rejectButton1);
         ImageButton homeButton = findViewById(R.id.homeButton);
-        LinearLayout rejectSection = findViewById(R.id.linear1);
+        LinearLayout acceptRejectLayout = findViewById(R.id.linear1);
 
         // Fetch data passed via Intent
         String uploadedImageUrl = getIntent().getStringExtra("imageUrl");
@@ -59,19 +59,29 @@ public class UserDesignDetail extends AppCompatActivity {
         // Set design status
         statusText.setText(designStatus != null ? designStatus : "Pending");
 
+        // Initially hide Accept/Reject buttons and View in AR button
+        acceptRejectLayout.setVisibility(View.GONE);
+        viewInARButton.setVisibility(View.GONE);
+
         // Load design image (if uploaded by the designer)
         if (designerImageUrl != null && !designerImageUrl.isEmpty()) {
             Glide.with(this)
                     .load(designerImageUrl)
                     .into(designImageView);
-            viewInARButton.setEnabled(true); // Enable View in AR button
+
+            // Show Accept/Reject buttons and View in AR button since final design exists
+            acceptRejectLayout.setVisibility(View.VISIBLE);
+            viewInARButton.setVisibility(View.VISIBLE);
         } else {
             designImageView.setVisibility(View.GONE);
-            viewInARButton.setEnabled(false);
         }
 
+        // Hide rejection notes and submit button initially
+        rejectionNotes.setVisibility(View.GONE);
+        submitButton.setVisibility(View.GONE);
+
         // Handle Reject Button Click
-        findViewById(R.id.rejectButton1).setOnClickListener(v -> {
+        rejectButton.setOnClickListener(v -> {
             rejectionNotes.setVisibility(View.VISIBLE);
             submitButton.setVisibility(View.VISIBLE);
         });

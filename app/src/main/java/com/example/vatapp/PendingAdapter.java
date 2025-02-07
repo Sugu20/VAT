@@ -34,8 +34,8 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         RequestpendingResponse.Request item = pendingItems.get(position);
-        holder.idTextView.setText(item.getRequester_id());
-        holder.nameTextView.setText(item.getRequester_name());
+        holder.idTextView.setText(""+item.getRequester_id());
+        holder.nameTextView.setText(""+item.getRequester_name());
 
         holder.detailsButton.setOnClickListener(v -> {
             if (onDetailsClickListener != null) {
@@ -44,9 +44,10 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.ViewHold
 
             // Start DesignDescription activity with data
             Intent intent = new Intent(context, DesignDescription.class);
-            intent.putExtra("requester_name", item.getRequester_name());
-            intent.putExtra("description", item.getDescription()); // Ensure this is in Request class
-            intent.putExtra("image_url", item.getSample_image());  // Ensure this is in Request class
+            intent.putExtra("request_id",""+item.getId());
+            intent.putExtra("requester_name", ""+item.getRequester_name());
+            intent.putExtra("description", ""+item.getDescription()); // Ensure this is in Request class
+            intent.putExtra("image_url", ""+item.getSample_image());  // Ensure this is in Request class
             context.startActivity(intent);
         });
     }

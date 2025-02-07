@@ -94,8 +94,10 @@ public class SignIn1 extends AppCompatActivity {
                         Intent intent;
                         if ("designer".equalsIgnoreCase(role.trim())) {
                             intent = new Intent(SignIn1.this, dash_designer.class);
+                            finishAffinity();
                         } else if ("user".equalsIgnoreCase(role.trim())) {
                             intent = new Intent(SignIn1.this, dash_user.class);
+                            finishAffinity();
                         } else {
                             Toast.makeText(SignIn1.this, "Unknown role: " + role, Toast.LENGTH_SHORT).show();
                             return;

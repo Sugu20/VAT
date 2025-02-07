@@ -20,6 +20,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".UploadProfileImage"
+            android:exported="false" />
+        <activity
+            android:name=".DesignersUserPrevious2"
+            android:exported="false" />
+        <activity
+            android:name=".DesginersUserPrevious"
+            android:exported="false" />
+        <activity
+            android:name=".UserDesignerProfile"
+            android:exported="false" />
+        <activity
             android:name=".FeedBackDescription"
             android:exported="false" />
         <activity

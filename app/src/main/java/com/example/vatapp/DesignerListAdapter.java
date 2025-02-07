@@ -38,8 +38,8 @@ public class DesignerListAdapter extends RecyclerView.Adapter<DesignerListAdapte
 
         // Navigate to profile_page on button click
         holder.goToDetailsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, profile_page.class);
-            intent.putExtra("user_id", designer.getUserId());
+            Intent intent = new Intent(context, UserDesignerProfile.class);
+            intent.putExtra("user_id", ""+designer.getUser_id());
             intent.putExtra("name", designer.getName());
             intent.putExtra("email", designer.getEmail());
             context.startActivity(intent);

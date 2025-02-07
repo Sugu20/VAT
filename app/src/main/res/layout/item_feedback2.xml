@@ -1,39 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp"
-    >
+    android:padding="10dp">
 
-    <TextView
-        android:id="@+id/userNameTextView1"
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="User Name :"
-        android:textSize="16sp"
-        android:textColor="#000" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
+        <!-- Title and Description -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/feedbackTextView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Feedback Text"
-        android:textSize="14sp"
-        android:textColor="#333" />
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User ID : "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name : "
+                android:textSize="16sp" />
+        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/detailsButton"
-            android:background="@drawable/bg_button_color"
+        <!-- Go to Details Button -->
+        <Button
+            android:id="@+id/goToDetailsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
-            android:textColor="@color/white"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
-</LinearLayout>
+            android:textSize="14sp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

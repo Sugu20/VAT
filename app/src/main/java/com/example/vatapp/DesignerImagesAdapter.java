@@ -1,6 +1,7 @@
 package com.example.vatapp;
 
 import static com.example.vatapp.api.RetrofitClient.Base_url;
+import static com.example.vatapp.api.RetrofitClient.Image_base_url;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -35,8 +36,9 @@ public class DesignerImagesAdapter extends RecyclerView.Adapter<DesignerImagesAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String imageUrl = String.valueOf(imageList.get(position));
+        String url = Image_base_url+imageUrl;
         Glide.with(context)
-                .load(Base_url+imageUrl)
+                .load(url)
                 .placeholder(R.drawable.placeholder) // Add a placeholder drawable
                 .into(holder.imageView);
     }

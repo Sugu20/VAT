@@ -3,18 +3,19 @@ package com.example.vatapp;
 import com.example.vatapp.api.RetrofitClient;
 
 public class DesignersFeedback {
-    private String userName;
+    private String user_name;
     private String feedbackText;
-    private String filePath; // Use 'filePath' instead of 'imageUrl'
+    private String filePath;
 
     public DesignersFeedback(String userName, String feedbackText, String filePath) {
-        this.userName = userName;
+        this.user_name = userName;
         this.feedbackText = feedbackText;
         this.filePath = filePath;
+
     }
 
     public String getUserName() {
-        return userName;
+        return user_name;
     }
 
     public String getFeedbackText() {
@@ -26,6 +27,6 @@ public class DesignersFeedback {
     }
 
     public String getFullImageUrl() {
-        return RetrofitClient.Image_base_url + filePath; // Construct full image URL
+        return RetrofitClient.Image_base_url + filePath; // FIXED!
     }
 }

@@ -36,7 +36,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name : "
-                android:textSize="16sp" />
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/statusTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status : "
+                android:textSize="18sp"/>
+
         </LinearLayout>
 
         <!-- Go to Details Button -->
