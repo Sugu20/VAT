@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.AppCompatButton;
@@ -23,6 +24,8 @@ public class DesignersPrevious2 extends AppCompatActivity {
     private ImageButton homeButton, backButton;
     private RecyclerView feedbackRecyclerView;
     private TextView feedbackTextView;
+
+    String imageUrl;
     private String previousActivity;  // To track the previous activity for back navigation
 
     @Override
@@ -42,7 +45,6 @@ public class DesignersPrevious2 extends AppCompatActivity {
         // designImageView.setImageURI(imageUri);  // Example: load image from URI
 
         // Handle "View in AR" button click
-        viewInARButton.setOnClickListener(v -> openCameraForAR());
 
         // Handle "Home" button click (navigate to dash_designer)
         homeButton.setOnClickListener(v -> navigateToDashDesigner());
@@ -56,21 +58,32 @@ public class DesignersPrevious2 extends AppCompatActivity {
             }
         });
 
+        imageUrl = Image_base_url + getIntent().getStringExtra("imageUrl");
+
+
         Glide.with(this)
-                .load(Image_base_url+getIntent().getStringExtra("imageUrl"))
+                .load(imageUrl)
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(designImageView);
 
         // You may want to set the previous activity identifier based on how the user navigated here
         previousActivity = getIntent().getStringExtra("previous_activity");
+
+        viewInARButton.setOnClickListener(v -> {
+            if (!imageUrl.isEmpty()) {
+                openCameraForAR();
+            }
+        });
+
     }
 
     // Method to open the camera for AR viewing
     private void openCameraForAR() {
         // Implement logic to open camera and AR functionality
         // For example, starting an AR camera activity
-        Intent intent = new Intent(this, com.example.vatapp.ImageView.class);
+        Intent intent = new Intent(this, ARActivity.class);
+        intent.putExtra("imageUrl",imageUrl );
         startActivity(intent);
     }
 

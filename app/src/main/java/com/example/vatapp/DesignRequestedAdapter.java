@@ -1,5 +1,7 @@
 package com.example.vatapp;
 
+import android.annotation.SuppressLint;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,29 +9,28 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.vatapp.response.DesignStatusResponse;
 import java.util.List;
 
 public class DesignRequestedAdapter extends RecyclerView.Adapter<DesignRequestedAdapter.ViewHolder> {
 
-    private List<DesignRequestedClass> designList;
+    private List<DesignStatusResponse.Design> designList;
     private OnItemClickListener onItemClickListener;
 
-    // Constructor
-    public DesignRequestedAdapter(List<DesignRequestedClass> designList, OnItemClickListener onItemClickListener) {
-        this.designList = designList;
+    public DesignRequestedAdapter(List<DesignStatusResponse.Design> designList, OnItemClickListener onItemClickListener) {
+        this.designList = designList != null ? designList : List.of(); // Ensures no null list
         this.onItemClickListener = onItemClickListener;
     }
 
-    // ViewHolder to hold the item views
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView userIdTextView, nameTextView, statusTextView;
+        TextView statusTextView, acceptedIdTextView, acceptedNameTextView;
         Button detailsButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            userIdTextView = itemView.findViewById(R.id.titleTextView);
-            nameTextView = itemView.findViewById(R.id.descriptionTextView);
             statusTextView = itemView.findViewById(R.id.statusTextView);
+            acceptedIdTextView = itemView.findViewById(R.id.acceptedIdTextView);
+            acceptedNameTextView = itemView.findViewById(R.id.acceptedNameTextView);
             detailsButton = itemView.findViewById(R.id.goToDetailsButton);
         }
     }
@@ -41,16 +42,21 @@ public class DesignRequestedAdapter extends RecyclerView.Adapter<DesignRequested
         return new ViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DesignRequestedClass design = designList.get(position);
+        DesignStatusResponse.Design design = designList.get(position);
 
-        holder.userIdTextView.setText("User ID: " + design.getUserId());
-        holder.nameTextView.setText("Name: " + design.getName());
-        holder.statusTextView.setText("Status: " + design.getStatus());
+        holder.statusTextView.setText("Status: " + (TextUtils.isEmpty(design.getStatus()) ? "N/A" : design.getStatus()));
+        if (design.getAcceptedId() != null){
+            holder.acceptedIdTextView.setText("Accepted ID: " + (design.getAcceptedId() > 0 ? design.getAcceptedId() : "N/A"));
+            holder.acceptedNameTextView.setText("Accepted Name: " + (TextUtils.isEmpty(design.getAcceptedName()) ? "N/A" : design.getAcceptedName()));
+        }
 
         holder.detailsButton.setOnClickListener(v -> {
-            onItemClickListener.onItemClick(design);
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(design);
+            }
         });
     }
 
@@ -59,8 +65,7 @@ public class DesignRequestedAdapter extends RecyclerView.Adapter<DesignRequested
         return designList.size();
     }
 
-    // Interface to handle item clicks
     public interface OnItemClickListener {
-        void onItemClick(DesignRequestedClass design);
+        void onItemClick(DesignStatusResponse.Design design);
     }
 }

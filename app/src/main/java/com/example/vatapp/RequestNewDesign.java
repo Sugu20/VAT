@@ -109,7 +109,7 @@ public class RequestNewDesign extends AppCompatActivity {
                 return;
             }
 
-            RequestBody imageRequestBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+            RequestBody imageRequestBody = RequestBody.create(MediaType.parse("*/*"), imageFile);
             MultipartBody.Part imagePart = MultipartBody.Part.createFormData("sample_image", imageFile.getName(), imageRequestBody);
 
             ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
@@ -123,10 +123,21 @@ public class RequestNewDesign extends AppCompatActivity {
 
                         if ("success".equals(responseData.getStatus())) {
                             Toast.makeText(RequestNewDesign.this, "Design request submitted successfully!", Toast.LENGTH_SHORT).show();
+
+                            // Show only the required elements
+                            textPrompt.setVisibility(View.VISIBLE);
+                            textPrompt2.setVisibility(View.VISIBLE);
+                            homeButton.setVisibility(View.VISIBLE);
+                            requestNewDesign.setVisibility(View.VISIBLE);
+
+                            // Hide other UI elements
+                            imageUploaded.setVisibility(View.GONE);
+                            uploadButton.setVisibility(View.GONE);
+                            sendButton.setVisibility(View.GONE);
+                            descriptionInput.setVisibility(View.GONE);
                             textPrompt.setVisibility(View.VISIBLE);
                             textPrompt2.setVisibility(View.VISIBLE);
                             requestNewDesign.setVisibility(View.VISIBLE);
-                            homeButton.setVisibility(View.VISIBLE);
                         } else {
                             Toast.makeText(RequestNewDesign.this, responseData.getMessage(), Toast.LENGTH_SHORT).show();
                         }

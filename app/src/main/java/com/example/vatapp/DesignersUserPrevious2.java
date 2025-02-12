@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.AppCompatButton;
@@ -20,6 +21,9 @@ public class DesignersUserPrevious2 extends AppCompatActivity {
     private ImageButton homeButton, backButton;
     private RecyclerView feedbackRecyclerView;
     private TextView feedbackTextView;
+
+    String imageUrl;
+
     private String previousActivity;  // To track the previous activity for back navigation
 
     @Override
@@ -35,8 +39,10 @@ public class DesignersUserPrevious2 extends AppCompatActivity {
         feedbackTextView = findViewById(R.id.textView32);
 
 
+        imageUrl = Image_base_url + getIntent().getStringExtra("imageUrl");
+
         Glide.with(this)
-                .load(Image_base_url+getIntent().getStringExtra("imageUrl"))
+                .load(imageUrl)
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.placeholder)
                 .into(designImageView);
@@ -44,7 +50,11 @@ public class DesignersUserPrevious2 extends AppCompatActivity {
         previousActivity = getIntent().getStringExtra("previous_activity");
 
         // Handle "View in AR" button click
-        viewInARButton.setOnClickListener(v -> openCameraForAR());
+        viewInARButton.setOnClickListener(v -> {
+            if (!imageUrl.isEmpty()) {
+                openCameraForAR();
+            }
+        });
 
         // Handle "Back" button click (Navigate based on previous activity)
         backButton.setOnClickListener(v -> {
@@ -58,9 +68,11 @@ public class DesignersUserPrevious2 extends AppCompatActivity {
 
     // Method to open the camera for AR viewing
     private void openCameraForAR() {
-        Intent intent = new Intent(this, com.example.vatapp.ImageView.class);
+        Intent intent = new Intent(this, ARActivity.class);
+        intent.putExtra("imageUrl",imageUrl);
         startActivity(intent);
     }
+
     // Method to navigate to DashUser
     private void navigateToDashUser() {
         Intent intent = new Intent(this, dash_user.class);

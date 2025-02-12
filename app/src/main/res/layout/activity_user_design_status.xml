@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -13,6 +14,7 @@
         android:alpha="0.8"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/bggg" />
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
@@ -25,6 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_12" />
+
     <TextView
         android:id="@+id/text25"
         android:layout_width="match_parent"
@@ -40,24 +43,18 @@
         app:layout_constraintEnd_toEndOf="@id/imageView5"/>
 
 
-    <FrameLayout
+    <ImageButton
+        android:id="@+id/homeButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="@id/imageView5"
-        app:layout_constraintStart_toStartOf="@id/imageView5"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:contentDescription="Home"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/AllRequest"
-        android:layout_marginTop="14dp"
-         >
-
-        <ImageButton
-            android:id="@+id/imageView22"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:contentDescription="Home button"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/baseline_home_24" />
-    </FrameLayout>
+        app:srcCompat="@drawable/baseline_home_24" />
 
 
     <androidx.recyclerview.widget.RecyclerView

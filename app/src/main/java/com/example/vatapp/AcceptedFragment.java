@@ -1,81 +1,90 @@
 package com.example.vatapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
+import android.widget.Toast;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
+import com.example.vatapp.response.RequestAcceptedResponse;
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AcceptedFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AcceptedFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     private RecyclerView recyclerView;
     private AcceptedAdapter acceptedAdapter;
-    private List<String> acceptedItems; // Placeholder for your actual data type
+    private List<RequestAcceptedResponse.Request> acceptedItems;
+    private static final String TAG = "AcceptedFragment";
 
     public AcceptedFragment() {
         // Required empty public constructor
     }
 
-    public static AcceptedFragment newInstance(String param1, String param2) {
-        AcceptedFragment fragment = new AcceptedFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accepted, container, false);
 
         // Initialize RecyclerView
-        recyclerView = view.findViewById(R.id.Accepted); // Ensure RecyclerView has an ID in XML
+        recyclerView = view.findViewById(R.id.Accepted);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Initialize data and adapter
-        acceptedItems = new ArrayList<>();
-        loadAcceptedItems(); // Load the data
-        acceptedAdapter = new AcceptedAdapter(acceptedItems);
-        recyclerView.setAdapter(acceptedAdapter);
+        // Load accepted requests
+        loadAcceptedRequests();
 
         return view;
     }
 
-    private void loadAcceptedItems() {
-        // Load or fetch data for the accepted items list
-        acceptedItems.add("Accepted Item 1");
-        acceptedItems.add("Accepted Item 2");
-        acceptedItems.add("Accepted Item 3");
-        // Add more items or fetch from database/API
+    private void loadAcceptedRequests() {
+        // Get user_id from SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        String userId = sharedPreferences.getString("user_id", null);
+
+        if (userId == null) {
+            Toast.makeText(getContext(), "User ID not found", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "User ID not found in SharedPreferences");
+            return;
+        }
+
+        Log.d(TAG, "Retrieved user_id: " + userId);
+
+        // Retrofit API call
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<RequestAcceptedResponse> call = apiService.getAcceptedRequests(Integer.parseInt(userId));
+
+        call.enqueue(new Callback<RequestAcceptedResponse>() {
+            @Override
+            public void onResponse(Call<RequestAcceptedResponse> call, Response<RequestAcceptedResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "API Response: " + response.body().toString());
+                    acceptedItems = response.body().getRequests();
+                    if (acceptedItems != null && !acceptedItems.isEmpty()) {
+                        acceptedAdapter = new AcceptedAdapter(acceptedItems, getContext());
+                        recyclerView.setAdapter(acceptedAdapter);
+                    } else {
+                        Toast.makeText(getContext(), "No accepted requests found", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e(TAG, "Failed response: " + response.errorBody());
+                    Toast.makeText(getContext(), "Failed to load accepted requests", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RequestAcceptedResponse> call, Throwable t) {
+                Log.e(TAG, "API call failed", t);
+                Toast.makeText(getContext(), "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

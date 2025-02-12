@@ -1,5 +1,7 @@
 package com.example.vatapp;
 
+import static com.example.vatapp.api.RetrofitClient.Image_base_url;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -105,6 +107,7 @@ public class dash_user extends AppCompatActivity {
                         // Log the full response for debugging
                         Log.d("ProfileImage", "Response: " + response.body().toString());
                         String imageUrl = response.body().getImage_url();
+                        String ImagefullUrl = Image_base_url+ imageUrl;
 
                         if (imageUrl != null && !imageUrl.isEmpty()) {
                             // Log for debugging
@@ -112,7 +115,7 @@ public class dash_user extends AppCompatActivity {
 
                             // Load image using Glide
                             Glide.with(dash_user.this)
-                                    .load(RetrofitClient.Image_base_url + imageUrl)
+                                    .load(ImagefullUrl)
                                     .placeholder(R.drawable.placeholder)
                                     .error(R.drawable.placeholder)
                                     .into(profileImageView);

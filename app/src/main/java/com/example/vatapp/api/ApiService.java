@@ -2,9 +2,11 @@ package com.example.vatapp.api;
 
 import com.example.vatapp.response.AcceptedResponse;
 import com.example.vatapp.response.DesignResponse;
+import com.example.vatapp.response.DesignStatusResponse;
 import com.example.vatapp.response.DesignUploadResponse;
 import com.example.vatapp.response.DesignersResponse;
 import com.example.vatapp.response.FeedbackResponse;
+import com.example.vatapp.response.FeedbackSubmitResponse;
 import com.example.vatapp.response.ForgotPasswordRequest;
 import com.example.vatapp.response.ForgotPasswordResponse;
 import com.example.vatapp.response.LoginRequest;
@@ -13,8 +15,10 @@ import com.example.vatapp.response.ProfileData;
 import com.example.vatapp.response.ProfileImageResponse;
 import com.example.vatapp.response.RegisterRequest;
 import com.example.vatapp.response.RegisterResponse;
+import com.example.vatapp.response.RequestAcceptedResponse;
 import com.example.vatapp.response.RequestpendingResponse;
 import com.example.vatapp.response.ResponseData;
+import com.example.vatapp.response.UploadedResponse;
 import com.example.vatapp.response.UserDesignResponse;
 import com.google.gson.JsonObject;
 
@@ -85,13 +89,6 @@ public interface ApiService {
     );
 
     @Multipart
-    @POST("VAT_APP/upload.php")
-    Call<DesignUploadResponse> uploadImage(
-            @Part MultipartBody.Part file,
-            @Part("user_id") RequestBody userId
-    );
-
-    @Multipart
     @POST("VAT_APP/design_request.php") // Replace with your server's PHP script URL
     Call<ResponseData> submitDesignRequest(
             @Part("user_id") RequestBody userId,
@@ -118,7 +115,32 @@ public interface ApiService {
             @Field("accepted_id") int acceptedId,
             @Field("status") String status
     );
+    @GET("VAT_APP/fetch_accepted_requests.php")
+    Call<RequestAcceptedResponse> getAcceptedRequests(@Query("user_id") int userId);
+
+
+    @GET("VAT_APP/user_fetch_designs.php")
+    Call<DesignStatusResponse> getUserRequests(@Query("user_id") String userId);
+
+    @Multipart
+    @POST("VAT_APP/upload_final.php")
+    Call<UploadedResponse> uploadImage(
+            @Part MultipartBody.Part image,
+            @Part("user_id") RequestBody userId,
+            @Part("requester") RequestBody requester,
+            @Part("request_id") RequestBody reqId
+    );
+    @FormUrlEncoded
+    @POST("submit_feedback.php")
+    Call<FeedbackSubmitResponse> submitFeedback(
+            @Field("user_id") int userId,
+            @Field("image_id") int imageId,
+            @Field("feedback_text") String feedbackText
+    );
 }
+
+
+
 
 
 

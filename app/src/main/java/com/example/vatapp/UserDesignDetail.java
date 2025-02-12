@@ -1,7 +1,10 @@
 package com.example.vatapp;
 
+import static com.example.vatapp.api.RetrofitClient.Image_base_url;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,9 +16,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.vatapp.api.ApiService;
+import com.example.vatapp.api.RetrofitClient;
+import com.example.vatapp.response.FeedbackSubmitResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserDesignDetail extends AppCompatActivity {
 
+    String imageUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,57 +34,72 @@ public class UserDesignDetail extends AppCompatActivity {
 
         // Initialize views
         ImageView uploadedImg = findViewById(R.id.uploadedimg);
-        TextView descriptionText = findViewById(R.id.text27);
+        TextView descriptionText = findViewById(R.id.editTextTextMultiLine2);
         TextView statusText = findViewById(R.id.statusText);
+        TextView acceptedname = findViewById(R.id.acceptedname);
         ImageView designImageView = findViewById(R.id.image2);
         EditText rejectionNotes = findViewById(R.id.multiLineText1);
         androidx.appcompat.widget.AppCompatButton viewInARButton = findViewById(R.id.button7);
         androidx.appcompat.widget.AppCompatButton submitButton = findViewById(R.id.submitButton);
         androidx.appcompat.widget.AppCompatButton acceptButton = findViewById(R.id.acceptButton1);
         androidx.appcompat.widget.AppCompatButton rejectButton = findViewById(R.id.rejectButton1);
-        ImageButton homeButton = findViewById(R.id.homeButton);
         LinearLayout acceptRejectLayout = findViewById(R.id.linear1);
+        ImageButton homeButton = findViewById(R.id.homeButton5);
 
         // Fetch data passed via Intent
-        String uploadedImageUrl = getIntent().getStringExtra("imageUrl");
+        String sampleImageUrl = getIntent().getStringExtra("sample_image");
         String designDescription = getIntent().getStringExtra("description");
         String designStatus = getIntent().getStringExtra("status");
-        String designerImageUrl = getIntent().getStringExtra("designerImageUrl"); // Designer's uploaded design URL
+        String uploadedImageUrl = getIntent().getStringExtra("upload_image");
 
-        // Load uploaded image (if available)
-        if (uploadedImageUrl != null && !uploadedImageUrl.isEmpty()) {
+        imageUrl = Image_base_url + uploadedImageUrl;
+
+        if (getIntent().hasExtra("name")) {
+            String acceptedName = getIntent().getStringExtra("name");
+            acceptedname.setText("Accepted By: " + acceptedName);
+        }
+
+        // Load sample_image into uploadedImg with placeholder
+        if (sampleImageUrl != null && !sampleImageUrl.isEmpty()) {
+            String fullSampleUrl = Image_base_url + sampleImageUrl;
+            Log.d("GlideDebug", "Sample Image URL: " + fullSampleUrl);  // Debug log
+
             Glide.with(this)
-                    .load(uploadedImageUrl)
+                    .load(fullSampleUrl)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
                     .into(uploadedImg);
         } else {
-            uploadedImg.setVisibility(View.GONE);
+            Log.e("GlideError", "Sample image URL is null or empty.");
+        }
+
+        // Load upload_image into designImageView with placeholder
+        if (uploadedImageUrl != null && !uploadedImageUrl.isEmpty()) {
+            String fullUploadUrl = RetrofitClient.Image_base_url + uploadedImageUrl;
+            Log.d("GlideDebug", "Uploaded Image URL: " + fullUploadUrl);  // Debug log
+
+            Glide.with(this)
+                    .load(fullUploadUrl)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
+                    .into(designImageView);
+        } else {
+            Log.e("GlideError", "Uploaded image URL is null or empty.");
         }
 
         // Set design description
-        if (designDescription != null && !designDescription.isEmpty()) {
-            descriptionText.setText(designDescription);
-        } else {
-            descriptionText.setText("No description provided.");
-        }
+        descriptionText.setText(designDescription != null && !designDescription.isEmpty() ? designDescription : "No description provided.");
 
         // Set design status
         statusText.setText(designStatus != null ? designStatus : "Pending");
 
-        // Initially hide Accept/Reject buttons and View in AR button
-        acceptRejectLayout.setVisibility(View.GONE);
-        viewInARButton.setVisibility(View.GONE);
-
-        // Load design image (if uploaded by the designer)
-        if (designerImageUrl != null && !designerImageUrl.isEmpty()) {
-            Glide.with(this)
-                    .load(designerImageUrl)
-                    .into(designImageView);
-
-            // Show Accept/Reject buttons and View in AR button since final design exists
+        // Show Accept/Reject buttons and View in AR button only if `upload_image` is available
+        if (uploadedImageUrl != null && !uploadedImageUrl.isEmpty()) {
             acceptRejectLayout.setVisibility(View.VISIBLE);
             viewInARButton.setVisibility(View.VISIBLE);
         } else {
-            designImageView.setVisibility(View.GONE);
+            acceptRejectLayout.setVisibility(View.GONE);
+            viewInARButton.setVisibility(View.GONE);
         }
 
         // Hide rejection notes and submit button initially
@@ -102,14 +128,44 @@ public class UserDesignDetail extends AppCompatActivity {
 
         // Handle Home Button Click
         homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(UserDesignDetail.this, dash_user.class);
+            Intent intent = new Intent(UserDesignDetail.this, UserDesignStatus.class);
             startActivity(intent);
-            finish();
         });
 
         // View in AR Button Click (Leave navigation empty for now)
         viewInARButton.setOnClickListener(v -> {
-            Toast.makeText(this, "View in AR is currently under development.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ARActivity.class);
+            intent.putExtra("imageUrl",imageUrl);
+            startActivity(intent);
+        });
+    }
+
+    // Submit feedback to the server
+    private void submitFeedback(int userId, int imageId, String feedbackText) {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<FeedbackSubmitResponse> call = apiService.submitFeedback(userId, imageId, feedbackText);
+
+        call.enqueue(new Callback<FeedbackSubmitResponse>() {
+            @Override
+            public void onResponse(Call<FeedbackSubmitResponse> call, Response<FeedbackSubmitResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    FeedbackSubmitResponse feedbackResponse = response.body();
+                    Toast.makeText(UserDesignDetail.this, feedbackResponse.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    if (feedbackResponse.isSuccess()) {
+                        Intent intent = new Intent(UserDesignDetail.this, dash_user.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } else {
+                    Toast.makeText(UserDesignDetail.this, "Submission failed. Try again.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FeedbackSubmitResponse> call, Throwable t) {
+                Toast.makeText(UserDesignDetail.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

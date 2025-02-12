@@ -48,9 +48,10 @@
     <ImageView
         android:id="@+id/ImageviewFeedback"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginHorizontal="25dp"
         android:layout_marginTop="40dp"
+        android:src="@drawable/placeholder"
         app:layout_constraintTop_toBottomOf="@id/textView39"/>
 
     <TextView
@@ -66,7 +67,7 @@
         android:textSize="20dp"
         android:text="FeedBack Given By : "/>
 
-    <androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
+    <TextView
         android:id="@+id/Feedbackshown"
         android:layout_width="match_parent"
         android:layout_height="150dp"
