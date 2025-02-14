@@ -81,4 +81,11 @@ public class PendingFragment extends Fragment {
         intent.putExtra("image_url", ""+item.getSample_image());
         startActivity(intent);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        fetchPendingRequests();
+    }
 }

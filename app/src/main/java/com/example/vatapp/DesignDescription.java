@@ -3,14 +3,11 @@ package com.example.vatapp;
 import static com.example.vatapp.api.RetrofitClient.Image_base_url;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,23 +42,7 @@ public class DesignDescription extends AppCompatActivity {
     private Button acceptButton, rejectButton, uploadButton, submitButton;
     private ImageButton homeButton;
     private String requestId, acceptedId, requesterId;
-    private boolean isAccepted = false;
     private Uri selectedImageUri;
-
-    private final ActivityResultLauncher<Intent> imagePickerLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri selectedImageUri = result.getData().getData();
-                    if (selectedImageUri != null) {
-                        Log.d("UploadDebug", "Image selected: " + selectedImageUri.toString());
-                        finalDesignImageView.setImageURI(selectedImageUri);
-                        submitButton.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    Log.d("UploadDebug", "Image selection failed or canceled.");
-                }
-            });
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -82,8 +61,9 @@ public class DesignDescription extends AppCompatActivity {
         submitButton = findViewById(R.id.submitbtn);
         homeButton = findViewById(R.id.homeButton);
 
-        // Hide submit button initially
+        // Hide submit and upload buttons initially
         submitButton.setVisibility(View.GONE);
+        uploadButton.setVisibility(View.GONE);
 
         // Get SharedPreferences data
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
@@ -96,7 +76,7 @@ public class DesignDescription extends AppCompatActivity {
             String requesterName = intent.getStringExtra("requester_name");
             String description = intent.getStringExtra("description");
             String imageUrl = intent.getStringExtra("image_url");
-            requestId = intent.getStringExtra("id");
+            requestId = intent.getStringExtra("request_id");
 
             if (requesterName != null) {
                 requesterNameTextView.setText("Name : " + requesterName);
@@ -126,6 +106,66 @@ public class DesignDescription extends AppCompatActivity {
         rejectButton.setOnClickListener(v -> rejectRequest());
         uploadButton.setOnClickListener(v -> openGallery());
         submitButton.setOnClickListener(v -> uploadImage());
+        acceptButton.setOnClickListener(v -> acceptRequest());
+    }
+
+    private void acceptRequest() {
+        String status = "Accepted"; // Set status to "Accepted"
+
+        if (requestId == null || requestId.isEmpty()) {
+            Toast.makeText(this, "Invalid Request ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<AcceptedResponse> call = apiService.updateRequestStatus(Integer.parseInt(requestId), Integer.parseInt(acceptedId), status);
+
+        call.enqueue(new Callback<AcceptedResponse>() {
+            @Override
+            public void onResponse(Call<AcceptedResponse> call, Response<AcceptedResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(DesignDescription.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    acceptButton.setVisibility(View.GONE); // Hide accept button after acceptance
+                    uploadButton.setVisibility(View.VISIBLE); // Show upload button after acceptance
+                } else {
+                    Toast.makeText(DesignDescription.this, "Failed to update status", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AcceptedResponse> call, Throwable t) {
+                Toast.makeText(DesignDescription.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void rejectRequest() {
+        String status = "Pending"; // Revert status
+
+        if (requestId == null || requestId.isEmpty()) {
+            Toast.makeText(this, "Invalid Request ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<AcceptedResponse> call = apiService.updateRequestStatus(Integer.parseInt(requestId), 0, status);
+
+        call.enqueue(new Callback<AcceptedResponse>() {
+            @Override
+            public void onResponse(Call<AcceptedResponse> call, Response<AcceptedResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(DesignDescription.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    finish(); // Close activity after rejection
+                } else {
+                    Toast.makeText(DesignDescription.this, "Failed to update status", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AcceptedResponse> call, Throwable t) {
+                Toast.makeText(DesignDescription.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void openGallery() {
@@ -161,20 +201,17 @@ public class DesignDescription extends AppCompatActivity {
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", imageFile.getName(), requestFile);
 
-        RequestBody userId = RequestBody.create(MediaType.parse("text/plain"), acceptedId);
-        RequestBody requester = RequestBody.create(MediaType.parse("text/plain"), requesterId);
+        // Send only request_id as per the new PHP API
         RequestBody reqId = RequestBody.create(MediaType.parse("text/plain"), requestId);
 
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<UploadedResponse> call = apiService.uploadImage(body, userId, requester, reqId);
+        Call<UploadedResponse> call = apiService.uploadImage(body, reqId);
 
         call.enqueue(new Callback<UploadedResponse>() {
             @Override
             public void onResponse(Call<UploadedResponse> call, Response<UploadedResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(DesignDescription.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                    // Hide submit button again after upload
                     submitButton.setVisibility(View.GONE);
                 } else {
                     Toast.makeText(DesignDescription.this, "Upload failed", Toast.LENGTH_SHORT).show();
@@ -187,35 +224,5 @@ public class DesignDescription extends AppCompatActivity {
             }
         });
     }
-
-
-    private void rejectRequest() {
-        String status = "Pending"; // Revert status
-
-        if (requestId == null || requestId.isEmpty()) {
-            Toast.makeText(this, "Invalid Request ID", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<AcceptedResponse> call = apiService.updateRequestStatus(Integer.parseInt(requestId), 0, status);
-
-        call.enqueue(new Callback<AcceptedResponse>() {
-            @Override
-            public void onResponse(Call<AcceptedResponse> call, Response<AcceptedResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(DesignDescription.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    finish(); // Close activity after rejection
-                } else {
-                    Toast.makeText(DesignDescription.this, "Failed to update status", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AcceptedResponse> call, Throwable t) {
-                Toast.makeText(DesignDescription.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
 }
+

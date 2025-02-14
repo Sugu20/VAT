@@ -69,6 +69,7 @@ public class AcceptedFragment extends Fragment {
                     Log.d(TAG, "API Response: " + response.body().toString());
                     acceptedItems = response.body().getRequests();
                     if (acceptedItems != null && !acceptedItems.isEmpty()) {
+                        acceptedItems.clear();
                         acceptedAdapter = new AcceptedAdapter(acceptedItems, getContext());
                         recyclerView.setAdapter(acceptedAdapter);
                     } else {
@@ -87,4 +88,12 @@ public class AcceptedFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadAcceptedRequests();
+    }
 }
+
+

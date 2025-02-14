@@ -38,7 +38,7 @@ public class RequestNewDesign extends AppCompatActivity {
     private ImageView imageUploaded;
     private AppCompatButton uploadButton, sendButton;
     private EditText descriptionInput;
-    private TextView textPrompt, textPrompt2, requestNewDesign;
+    private TextView textPrompt, textPrompt2, requestNewDesign,title1,title2;
     private ImageButton homeButton;
     private Uri imageUri;
 
@@ -55,6 +55,9 @@ public class RequestNewDesign extends AppCompatActivity {
         textPrompt2 = findViewById(R.id.TextPrompt2);
         requestNewDesign = findViewById(R.id.text25);
         homeButton = findViewById(R.id.homebutton1);
+        title1 = findViewById(R.id.text26);
+        title2 = findViewById(R.id.text27);
+
 
         uploadButton.setOnClickListener(v -> openGallery());
         sendButton.setOnClickListener(v -> submitDesignRequest());
@@ -138,6 +141,8 @@ public class RequestNewDesign extends AppCompatActivity {
                             textPrompt.setVisibility(View.VISIBLE);
                             textPrompt2.setVisibility(View.VISIBLE);
                             requestNewDesign.setVisibility(View.VISIBLE);
+                            title1.setVisibility(View.GONE);
+                            title2.setVisibility(View.GONE);
                         } else {
                             Toast.makeText(RequestNewDesign.this, responseData.getMessage(), Toast.LENGTH_SHORT).show();
                         }

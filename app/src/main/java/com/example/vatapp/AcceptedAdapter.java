@@ -44,7 +44,7 @@ public class AcceptedAdapter extends RecyclerView.Adapter<AcceptedAdapter.ViewHo
 
             // Start DesignDescription activity with data
             Intent intent = new Intent(context, DesignDescription.class);
-            intent.putExtra("id", "" + item.getId());
+            intent.putExtra("request_id", "" + item.getId());
             intent.putExtra("requester_name", "" + item.getRequester_name());
             intent.putExtra("description", "" + item.getDescription());
             intent.putExtra("image_url", "" + item.getSample_image());

@@ -73,14 +73,15 @@ public class ARActivity extends AppCompatActivity {
                     MaterialFactory.makeTransparentWithTexture(this, texture)
                             .thenAccept(material -> {
                                 ModelRenderable planeRenderable = ShapeFactory.makeCube(
-                                        new Vector3(0.3f, 0.01f, 0.3f), // Adjust size of AR image
-                                        new Vector3(0f, 0.01f, 0f),
+                                        new Vector3(0.3f, 0.4f, 0.01f), // Width, Height, Depth (thin)
+                                        new Vector3(0f, 0.2f, 0f), // Position adjustment (raise it)
                                         material
                                 );
                                 addNodeToScene(anchor, planeRenderable);
                             });
                 });
     }
+
 
     private void addNodeToScene(Anchor anchor, ModelRenderable renderable) {
         AnchorNode anchorNode = new AnchorNode(anchor);

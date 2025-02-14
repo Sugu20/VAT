@@ -17,4 +17,3 @@ public class UploadedResponse {
         return image_path;
     }
 }
-

@@ -3,7 +3,6 @@ package com.example.vatapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +27,7 @@ public class DesignsFeedback extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_designs_feedback);
+        setContentView(R.layout.activity_designs_feedbacks);
 
         recyclerView = findViewById(R.id.recyclerView3);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

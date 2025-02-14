@@ -126,10 +126,9 @@ public interface ApiService {
     @POST("VAT_APP/upload_final.php")
     Call<UploadedResponse> uploadImage(
             @Part MultipartBody.Part image,
-            @Part("user_id") RequestBody userId,
-            @Part("requester") RequestBody requester,
             @Part("request_id") RequestBody reqId
     );
+
     @FormUrlEncoded
     @POST("submit_feedback.php")
     Call<FeedbackSubmitResponse> submitFeedback(
